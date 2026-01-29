@@ -14,26 +14,43 @@ export default function Navigation() {
           </Link>
 
           {/* Menu items */}
-          <div className="flex items-center gap-8">
-            <Link 
-              href="/"
-              className="text-gray-300 hover:text-purple-400 font-medium transition-colors"
-            >
-              Home
-            </Link>
-            <Link 
-              href="/blog"
-              className="text-gray-300 hover:text-purple-400 font-medium transition-colors"
-            >
-              Blog
-            </Link>
-            <Link 
-              href="/about"
-              className="px-6 py-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white rounded-full font-semibold transition-all shadow-lg hover:shadow-purple-500/50"
-            >
-              About
-            </Link>
-          </div>
+<div className="flex items-center gap-8">
+  <Link 
+    href="/" 
+    className="text-gray-300 hover:text-purple-400 font-medium transition-colors"
+  >
+    Home
+  </Link>
+  
+  <Link 
+    href="/blog" 
+    className="text-gray-300 hover:text-purple-400 font-medium transition-colors"
+  >
+    Blog
+  </Link>
+  
+  <Link 
+    href="/mixy" 
+    className="text-gray-300 hover:text-purple-400 font-medium transition-colors"
+  >
+    Mixy
+  </Link>
+  
+  <Link 
+    href="/playlisty" 
+    className="text-gray-300 hover:text-purple-400 font-medium transition-colors"
+  >
+    Playlisty
+  </Link>
+  
+  <Link 
+    href="/about" 
+    className="px-6 py-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white rounded-full font-semibold transition-all shadow-lg hover:shadow-purple-500/50"
+  >
+    About
+  </Link>
+</div>
+
         </div>
       </div>
     </nav>
