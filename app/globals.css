@@ -167,3 +167,56 @@ body {
   text-shadow: 0 0 20px rgba(220, 38, 38, 0.6);
   color: #dc2626;
 }
+
+/* === VHS RETRO BACKGROUND === */
+
+/* Pruhy - tenké čiary ako stará telka */
+.vhs-lines {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    rgba(255, 255, 255, 0.03) 1px,
+    transparent 2px
+  );
+  animation: vhs-scroll 8s linear infinite;
+}
+
+/* Šum - bodky (ako “zrno” na kazete) */
+.vhs-noise {
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 0, 0, 0.1) 1px,
+    transparent 1px
+  );
+  background-size: 4px 4px;
+  opacity: 0.3;
+  animation: noise 0.2s infinite;
+}
+
+/* Glitch - sem dáme iba animáciu (trhnutie) */
+.vhs-glitch {
+  animation: glitch-effect 7s infinite;
+}
+
+/* Pruhy sa pomaly posúvajú dole */
+@keyframes vhs-scroll {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100px); }
+}
+
+/* Šum jemne bliká */
+@keyframes noise {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.4; }
+}
+
+/* Občasné trhanie obrazu */
+@keyframes glitch-effect {
+  0% { transform: translate(0); }
+  10% { transform: translate(-3px, 3px); }
+  20% { transform: translate(-3px, -3px); }
+  30% { transform: translate(3px, 3px); }
+  40% { transform: translate(3px, -3px); }
+  50% { transform: translate(0); }
+  100% { transform: translate(0); }
+}

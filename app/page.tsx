@@ -1,17 +1,29 @@
 import Link from 'next/link'
 
+
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-black text-white">
       {/* HERO SEKCIA */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Pulzujúce pozadie */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 left-20 w-96 h-96 bg-red-900/30 rounded-full blur-3xl pulse-loop"></div>
-          <div className="absolute bottom-20 right-20 w-[500px] h-[500px] bg-red-800/20 rounded-full blur-3xl pulse-loop" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-red-950/20 rounded-full blur-3xl pulse-loop" style={{ animationDelay: '0.5s' }}></div>
-        </div>
+        
+        {/* VHS Retro pozadie */} 
+<div className="absolute inset-0 overflow-hidden pointer-events-none">
+  {/* Hlavný červený gradient (základ pozadia) */}
+  <div className="absolute inset-0 bg-gradient-to-b from-[#1a0000] via-[#8b0000] to-[#1a0000]"></div>
 
+  {/* Pruhy ako na starej TV */}
+  <div className="absolute inset-0 vhs-lines"></div>
+
+  {/* Šum/bodky */}
+  <div className="absolute inset-0 vhs-noise"></div>
+
+  {/* Glitch (trhanie) */}
+  <div className="absolute inset-0 vhs-glitch"></div>
+</div>
+
+
+        {/* ✅ TENTO <div> TI CHÝBAL - on obaľuje všetok obsah */}
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           <div className="text-center animate-glide-in">
             {/* DJ Logo */}
@@ -19,38 +31,31 @@ export default function HomePage() {
               🎧
             </div>
             
-            {/* Main Title */}
-            <h1 className="text-8xl md:text-9xl font-black mb-6 bg-gradient-to-r from-red-500 via-red-600 to-red-700 bg-clip-text text-transparent drop-shadow-[0_0_50px_rgba(220,38,38,0.8)]">
+            <h1 className="text-6xl md:text-7xl font-black mb-4 tracking-tight bg-gradient-to-r from-red-500 via-red-600 to-red-700 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(220,38,38,0.9)]">
               HANY BEATS
             </h1>
-            
-            {/* Subtitle */}
-            <p className="text-3xl md:text-4xl font-bold text-gray-300 mb-4">
-              Drum & Bass DJ • Producer
+
+            <p className="text-xl md:text-2xl font-semibold text-gray-200 mb-3">
+              Drum & Bass • Nočné príbehy v beatoch
             </p>
-            
-            <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Ponorte sa do sveta tekutých breakov, hlbokých basov a nekonečnej energie. 
-              Mix recenzie, DJ tipy a beaty, ktoré vás nakopnú.
+
+            <p className="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed">
+              Toto nie je promo stránka. Je to denník človeka, ktorý padal, vracal sa
+              a vždy skončil pri hudbe. Ak hľadáš len playlist, si na zlom mieste.
+              Ak hľadáš iskru, ktorá ťa nakopne začať… vitaj v mojom svete.
             </p>
 
             {/* Red Line */}
             <div className="w-64 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent mx-auto mb-12"></div>
             
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 animate-glide-in delay-200">
-              <Link 
-                href="/blog"
-                className="px-12 py-5 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white rounded-xl text-xl font-bold transition-all duration-500 shadow-[0_0_40px_rgba(220,38,38,0.5)] hover:shadow-[0_0_60px_rgba(220,38,38,0.9)] hover:scale-110"
-              >
-                Vstúp do Blogu 🔥
-              </Link>
-              <Link 
-                href="/mixy"
-                className="px-12 py-5 bg-transparent border-2 border-red-600 hover:bg-red-600/10 text-white rounded-xl text-xl font-bold transition-all duration-500 hover:scale-110"
-              >
-                Poslúchni Mixy 🎵
-              </Link>
+            <div className="flex flex-col md:flex-row gap-4 justify-center">
+              <button className="px-8 py-3 rounded-full bg-red-600 text-white font-semibold hover:bg-red-700 transition">
+                Vstúpiť do blogu 🔥
+              </button>
+              <button className="px-8 py-3 rounded-full border border-red-500/60 text-red-400 hover:bg-red-600/10 transition">
+                Počuť môj svet 🎧
+              </button>
             </div>
 
             {/* Stats */}
@@ -83,7 +88,7 @@ export default function HomePage() {
       <section className="py-32 px-6 relative">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-5xl font-black text-center mb-4 text-red-gradient animate-glide-in">
-            Čo Robím?
+            Čo tu nájdeš?
           </h2>
           <div className="w-32 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent mx-auto mb-16"></div>
           
@@ -91,7 +96,7 @@ export default function HomePage() {
             <div className="red-card-glow bg-zinc-950 p-8 rounded-2xl border border-red-950/30 text-center animate-glide-in delay-100">
               <div className="text-6xl mb-4">🎛️</div>
               <h3 className="text-2xl font-bold text-white mb-3">DJ Sets</h3>
-              <p className="text-gray-400 text-sm">Liquid DnB, Jump-up, Neurofunk sessions</p>
+              <p className="text-gray-400 text-sm">Moja DnB selekcia prevažne také rezkejšie tempo ale aj deep setiky </p>
             </div>
 
             <div className="red-card-glow bg-zinc-950 p-8 rounded-2xl border border-red-950/30 text-center animate-glide-in delay-200">
@@ -103,13 +108,13 @@ export default function HomePage() {
             <div className="red-card-glow bg-zinc-950 p-8 rounded-2xl border border-red-950/30 text-center animate-glide-in delay-300">
               <div className="text-6xl mb-4">📝</div>
               <h3 className="text-2xl font-bold text-white mb-3">Blog</h3>
-              <p className="text-gray-400 text-sm">DJ tipy, recenzie, tutoriály</p>
+              <p className="text-gray-400 text-sm">Moja DJ cesta, motivačné :D, nejaké tipy - triky</p>
             </div>
 
             <div className="red-card-glow bg-zinc-950 p-8 rounded-2xl border border-red-950/30 text-center animate-glide-in delay-400">
-              <div className="text-6xl mb-4">🎤</div>
-              <h3 className="text-2xl font-bold text-white mb-3">Live</h3>
-              <p className="text-gray-400 text-sm">Weekly sessions na streamoch</p>
+              <div className="text-6xl mb-4">❤️‍🔥</div>
+              <h3 className="text-2xl font-bold text-white mb-3">Playlists</h3>
+              <p className="text-gray-400 text-sm">Playlisty ktoré žijem a zároveň budujem</p>
             </div>
           </div>
         </div>
