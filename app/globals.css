@@ -72,3 +72,98 @@ body {
 .hover-glow:hover {
   box-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
 }
+
+/* Neonový efekt pre karty článkov */
+.dj-card-glow {
+  transition: all 0.3s ease; /* Plynulý prechod animácie */
+}
+
+.dj-card-glow:hover {
+  /* Fialová žiara pri prejdení myšou */
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); 
+  transform: translateY(-5px); /* Karta sa jemne zdvihne */
+  border-color: rgba(168, 85, 247, 0.5); /* Okraj sa rozsvieti */
+}
+
+/* Animácia pre postupné zobrazenie */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out forwards;
+}
+/* === MONOCHROME RED THEME === */
+
+/* Pulse Glow animácia - jemné pulzovanie */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(220, 38, 38, 0.6);
+  }
+}
+
+/* Smooth Glide - jemné vylietnutie zdola */
+@keyframes smoothGlide {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Neonový červený efekt pre karty */
+.red-card-glow {
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+.red-card-glow:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 0 30px rgba(220, 38, 38, 0.5),
+    0 20px 40px rgba(0, 0, 0, 0.6);
+  border-color: rgba(220, 38, 38, 0.8);
+}
+
+/* Pulzujúci efekt na loop */
+.pulse-loop {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* Postupné zobrazenie kartičiek */
+.animate-glide-in {
+  animation: smoothGlide 0.8s ease-out forwards;
+}
+
+/* Delay pre postupné zobrazovanie */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+
+/* Červený gradient text */
+.text-red-gradient {
+  background: linear-gradient(to right, #dc2626, #b91c1c, #991b1b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Hover glow na text */
+.hover-red-glow {
+  transition: all 0.3s ease;
+}
+
+.hover-red-glow:hover {
+  text-shadow: 0 0 20px rgba(220, 38, 38, 0.6);
+  color: #dc2626;
+}
