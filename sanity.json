@@ -1,0 +1,39 @@
+{
+  "api": {
+    "projectId": "z7bgld94"
+  },
+  "project": {
+    "name": "hany-beats"
+  },
+  "plugins": [
+    "@sanity/base",
+    "@sanity/components",
+    "@sanity/default-layout",
+    "@sanity/default-login",
+    "@sanity/desk-tool"
+  ],
+  "env": {
+    "development": [
+      {
+        "name": "apiVersion",
+        "value": "2024-01-01"
+      }
+    ]
+  },
+  "paths": {
+    "source": "./sanity",
+    "compiled": "./sanity_compiled"
+  },
+  "datasets": {
+    "production": {
+      "googleProjectId": null,
+      "label": "Production",
+      "datastore": null
+    },
+    "staging": {
+      "googleProjectId": null,
+      "label": "Staging",
+      "datastore": null
+    }
+  }
+}
