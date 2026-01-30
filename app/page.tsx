@@ -59,7 +59,7 @@ export default function HomePage() {
                 <div className="text-sm text-gray-400 uppercase tracking-wider">DJ Mixov</div>
               </div>
               <div className="red-card-glow bg-zinc-950 p-8 rounded-2xl border border-red-950/40">
-                <div className="text-5xl font-black text-red-500 mb-2">5+</div>
+                <div className="text-5xl font-black text-red-500 mb-2">15+</div>
                 <div className="text-sm text-gray-400 uppercase tracking-wider">Rokov Skúseností</div>
               </div>
               <div className="red-card-glow bg-zinc-950 p-8 rounded-2xl border border-red-950/40">
