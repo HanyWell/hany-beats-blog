@@ -1,35 +1,29 @@
 import Link from 'next/link'
 
-
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-black text-white">
       {/* HERO SEKCIA */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        
-        {/* VHS Retro pozadie */} 
+
+        {/* DJ silueta pozadie */}
 <div className="absolute inset-0 overflow-hidden pointer-events-none">
-  {/* Hlavný červený gradient (základ pozadia) */}
-  <div className="absolute inset-0 bg-gradient-to-b from-[#1a0000] via-[#8b0000] to-[#1a0000]"></div>
-
-  {/* Pruhy ako na starej TV */}
-  <div className="absolute inset-0 vhs-lines"></div>
-
-  {/* Šum/bodky */}
-  <div className="absolute inset-0 vhs-noise"></div>
-
-  {/* Glitch (trhanie) */}
-  <div className="absolute inset-0 vhs-glitch"></div>
+  {/* Obrázok vycentrovaný */}
+  <div 
+    className="absolute inset-0 bg-contain bg-center bg-no-repeat opacity-40"
+    style={{ backgroundImage: 'url(/UBG.jpg)' }}
+  ></div>
+  
+  {/* Tmavý gradient zdola nahor */}
+  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-black/30"></div>
 </div>
 
 
-        {/* ✅ TENTO <div> TI CHÝBAL - on obaľuje všetok obsah */}
+
+
+        {/* Obsah (text, tlačidlá, štatistiky) */}
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           <div className="text-center animate-glide-in">
-            {/* DJ Logo */}
-            <div className="text-9xl mb-6 hover-red-glow inline-block animate-bounce">
-              🎧
-            </div>
             
             <h1 className="text-6xl md:text-7xl font-black mb-4 tracking-tight bg-gradient-to-r from-red-500 via-red-600 to-red-700 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(220,38,38,0.9)]">
               HANY BEATS
@@ -59,7 +53,7 @@ export default function HomePage() {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-6 max-w-3xl mx-auto animate-glide-in delay-400">
+            <div className="grid grid-cols-3 gap-6 max-w-3xl mx-auto mt-16 animate-glide-in delay-400">
               <div className="red-card-glow bg-zinc-950 p-8 rounded-2xl border border-red-950/40">
                 <div className="text-5xl font-black text-red-500 mb-2">50+</div>
                 <div className="text-sm text-gray-400 uppercase tracking-wider">DJ Mixov</div>
@@ -124,22 +118,22 @@ export default function HomePage() {
       <section className="py-32 px-6 bg-zinc-950/50 relative">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-5xl font-black text-center mb-4 text-red-gradient animate-glide-in">
-            Moje Žánre
+            Môj DnB style
           </h2>
           <div className="w-32 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent mx-auto mb-16"></div>
           
           <div className="grid md:grid-cols-3 gap-6">
             <div className="red-card-glow bg-black p-10 rounded-2xl border border-red-950/40 hover:border-red-600/50 transition-all duration-500 animate-glide-in">
-              <h3 className="text-3xl font-bold text-red-500 mb-3">Liquid DnB</h3>
-              <p className="text-gray-400">Melodické breaky, hlboké basy, smooth vibes</p>
+              <h3 className="text-3xl font-bold text-red-500 mb-3">Liquid</h3>
+              <p className="text-gray-400">Melodické breaky, focus, smooth vibes, spev, klavír </p>
             </div>
             <div className="red-card-glow bg-black p-10 rounded-2xl border border-red-950/40 hover:border-red-600/50 transition-all duration-500 animate-glide-in delay-200">
-              <h3 className="text-3xl font-bold text-red-500 mb-3">Jump-up</h3>
-              <p className="text-gray-400">Energické, tvrdé basy, party atmosféra</p>
+              <h3 className="text-3xl font-bold text-red-500 mb-3">Jump-up a Deep</h3>
+              <p className="text-gray-400">Energické, tvrdé basy, party atmosféra, riadne petardy!!! Rap do toho... pffuuu </p>
             </div>
             <div className="red-card-glow bg-black p-10 rounded-2xl border border-red-950/40 hover:border-red-600/50 transition-all duration-500 animate-glide-in delay-400">
-              <h3 className="text-3xl font-bold text-red-500 mb-3">Neurofunk</h3>
-              <p className="text-gray-400">Temné, technické, futuristické zvuky</p>
+              <h3 className="text-3xl font-bold text-red-500 mb-3">Neurofunk, Crossbreed -  UpTempo a Hardcore </h3>
+              <p className="text-gray-400">Temné, technické, futuristické zvuky, riadna plecharina a diktovačka!!</p>
             </div>
           </div>
         </div>

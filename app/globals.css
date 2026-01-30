@@ -1,22 +1,12 @@
 @import "tailwindcss";
 
+/* ===================================== */
+/* ZÁKLADNÉ NASTAVENIA */
+/* ===================================== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 body {
@@ -24,103 +14,15 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
-/* DJ-style animácie */
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
-.animate-fade-in {
-  animation: fade-in 0.8s ease-out;
-}
 
-.animate-fade-in-delay {
-  animation: fade-in 0.8s ease-out 0.2s backwards;
-}
-
-.animate-fade-in-delay-2 {
-  animation: fade-in 0.8s ease-out 0.4s backwards;
-}
-
-.animate-fade-in-delay-3 {
-  animation: fade-in 0.8s ease-out 0.6s backwards;
-}
-
-.animate-fade-in-delay-4 {
-  animation: fade-in 0.8s ease-out 0.8s backwards;
-}
-
-.animate-fade-in-delay-5 {
-  animation: fade-in 0.8s ease-out 1s backwards;
-}
-
-.animate-fade-in-delay-6 {
-  animation: fade-in 0.8s ease-out 1.2s backwards;
-}
-
-/* Glow efekt pre kartičky */
-.hover-glow {
-  transition: all 0.3s ease;
-}
-
-.hover-glow:hover {
-  box-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
-}
-
-/* Neonový efekt pre karty článkov */
-.dj-card-glow {
-  transition: all 0.3s ease; /* Plynulý prechod animácie */
-}
-
-.dj-card-glow:hover {
-  /* Fialová žiara pri prejdení myšou */
-  box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); 
-  transform: translateY(-5px); /* Karta sa jemne zdvihne */
-  border-color: rgba(168, 85, 247, 0.5); /* Okraj sa rozsvieti */
-}
-
-/* Animácia pre postupné zobrazenie */
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-slide-up {
-  animation: slideUp 0.6s ease-out forwards;
-}
-/* === MONOCHROME RED THEME === */
-
-/* Pulse Glow animácia - jemné pulzovanie */
-@keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(220, 38, 38, 0.6);
-  }
-}
-
-/* Smooth Glide - jemné vylietnutie zdola */
-@keyframes smoothGlide {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* ===================================== */
+/* ČERVENÝ DJ ŠTÝL - KARTY A TEXTY */
+/* ===================================== */
 
 /* Neonový červený efekt pre karty */
 .red-card-glow {
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid rgba(220, 38, 38, 0.2);
 }
 
@@ -132,9 +34,38 @@ body {
   border-color: rgba(220, 38, 38, 0.8);
 }
 
-/* Pulzujúci efekt na loop */
-.pulse-loop {
-  animation: pulseGlow 2s ease-in-out infinite;
+/* Červený gradient text */
+.text-red-gradient {
+  background: linear-gradient(to right, #dc2626, #b91c1c, #991b1b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Hover glow na text a ikony */
+.hover-red-glow {
+  transition: all 0.3s ease;
+}
+
+.hover-red-glow:hover {
+  text-shadow: 0 0 20px rgba(220, 38, 38, 0.6);
+  color: #dc2626;
+}
+
+/* ===================================== */
+/* ANIMÁCIE - POSTUPNÉ ZOBRAZENIE */
+/* ===================================== */
+
+/* Smooth Glide - jemné vylietnutie zdola */
+@keyframes smoothGlide {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Postupné zobrazenie kartičiek */
@@ -149,74 +80,3 @@ body {
 .delay-400 { animation-delay: 0.4s; }
 .delay-500 { animation-delay: 0.5s; }
 .delay-600 { animation-delay: 0.6s; }
-
-/* Červený gradient text */
-.text-red-gradient {
-  background: linear-gradient(to right, #dc2626, #b91c1c, #991b1b);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Hover glow na text */
-.hover-red-glow {
-  transition: all 0.3s ease;
-}
-
-.hover-red-glow:hover {
-  text-shadow: 0 0 20px rgba(220, 38, 38, 0.6);
-  color: #dc2626;
-}
-
-/* === VHS RETRO BACKGROUND === */
-
-/* Pruhy - tenké čiary ako stará telka */
-.vhs-lines {
-  background: repeating-linear-gradient(
-    0deg,
-    transparent 0px,
-    rgba(255, 255, 255, 0.03) 1px,
-    transparent 2px
-  );
-  animation: vhs-scroll 8s linear infinite;
-}
-
-/* Šum - bodky (ako “zrno” na kazete) */
-.vhs-noise {
-  background-image: radial-gradient(
-    circle,
-    rgba(255, 0, 0, 0.1) 1px,
-    transparent 1px
-  );
-  background-size: 4px 4px;
-  opacity: 0.3;
-  animation: noise 0.2s infinite;
-}
-
-/* Glitch - sem dáme iba animáciu (trhnutie) */
-.vhs-glitch {
-  animation: glitch-effect 7s infinite;
-}
-
-/* Pruhy sa pomaly posúvajú dole */
-@keyframes vhs-scroll {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(100px); }
-}
-
-/* Šum jemne bliká */
-@keyframes noise {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 0.4; }
-}
-
-/* Občasné trhanie obrazu */
-@keyframes glitch-effect {
-  0% { transform: translate(0); }
-  10% { transform: translate(-3px, 3px); }
-  20% { transform: translate(-3px, -3px); }
-  30% { transform: translate(3px, 3px); }
-  40% { transform: translate(3px, -3px); }
-  50% { transform: translate(0); }
-  100% { transform: translate(0); }
-}
