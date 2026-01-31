@@ -14,7 +14,7 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-black text-white overflow-hidden">
       
-      {/* HERO SECTION - UPGRADED */}
+      {/* HERO SECTION - MOBILE OPTIMIZED */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Parallax Background */}
         <div 
@@ -44,14 +44,14 @@ export default function HomePage() {
 
         {/* Content */}
         <div className="max-w-6xl mx-auto px-6 relative z-10 text-center">
-          {/* Main title with stagger animation */}
-          <div className="mb-8 animate-fade-in-up">
-            <h1 className="text-7xl md:text-9xl font-black text-white mb-2 tracking-tight">
+          {/* Main title - MOBILE FRIENDLY */}
+          <div className="mb-6 md:mb-8 animate-fade-in-up">
+            <h1 className="text-5xl sm:text-7xl md:text-9xl font-black text-white mb-2 tracking-tight leading-tight">
               <span className="inline-block animate-fade-in-up" style={{animationDelay: '0.1s'}}>H</span>
               <span className="inline-block animate-fade-in-up" style={{animationDelay: '0.15s'}}>A</span>
               <span className="inline-block animate-fade-in-up" style={{animationDelay: '0.2s'}}>N</span>
               <span className="inline-block animate-fade-in-up" style={{animationDelay: '0.25s'}}>Y</span>
-              <span className="inline-block mx-4"></span>
+              <span className="inline-block mx-2 sm:mx-4"></span>
               <span className="inline-block animate-fade-in-up text-red-500" style={{animationDelay: '0.3s'}}>B</span>
               <span className="inline-block animate-fade-in-up text-red-500" style={{animationDelay: '0.35s'}}>E</span>
               <span className="inline-block animate-fade-in-up text-red-500" style={{animationDelay: '0.4s'}}>A</span>
@@ -59,49 +59,49 @@ export default function HomePage() {
               <span className="inline-block animate-fade-in-up text-red-500" style={{animationDelay: '0.5s'}}>S</span>
             </h1>
             {/* Animated underline */}
-            <div className="w-64 h-1 mx-auto bg-gradient-to-r from-transparent via-red-500 to-transparent animate-pulse"></div>
+            <div className="w-48 sm:w-64 h-1 mx-auto bg-gradient-to-r from-transparent via-red-500 to-transparent animate-pulse"></div>
           </div>
           
-          <p className="text-xl md:text-2xl text-white mb-4 font-bold animate-fade-in-up" style={{animationDelay: '0.6s'}}>
+          <p className="text-lg sm:text-xl md:text-2xl text-white mb-3 md:mb-4 font-bold animate-fade-in-up" style={{animationDelay: '0.6s'}}>
             Drum & Bass • Nočné príbehy v beatoch
           </p>
           
-          <p className="text-lg text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in-up" style={{animationDelay: '0.7s'}}>
+          <p className="text-base sm:text-lg text-gray-300 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed px-4 animate-fade-in-up" style={{animationDelay: '0.7s'}}>
             Toto nie je promo stránka. Je to denník človeka, ktorý padal, vracal sa
             a vždy skončil pri hudbe. Ak hľadáš len playlist, si na zlom mieste.
             Ak hľadáš iskru, ktorá ťa nakopne začať… <span className="text-red-400 font-semibold">vitaj v mojom svete.</span>
           </p>
 
-          {/* CTAs */}
-          <div className="flex flex-col md:flex-row gap-4 justify-center mb-20 animate-fade-in-up" style={{animationDelay: '0.8s'}}>
-            <Link href="/blog" className="group px-10 py-4 bg-red-600 hover:bg-red-500 text-white font-bold rounded-full transition-all duration-300 hover:shadow-[0_0_40px_rgba(220,38,38,0.8)] hover:scale-105 relative overflow-hidden">
+          {/* CTAs - MOBILE STACKED */}
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-16 md:mb-20 animate-fade-in-up px-4" style={{animationDelay: '0.8s'}}>
+            <Link href="/blog" className="group px-8 md:px-10 py-3 md:py-4 bg-red-600 hover:bg-red-500 text-white font-bold rounded-full transition-all duration-300 hover:shadow-[0_0_40px_rgba(220,38,38,0.8)] hover:scale-105 relative overflow-hidden text-center">
               <span className="relative z-10">Vstúpiť do blogu 🔥</span>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
             </Link>
-            <Link href="/playlisty" className="group px-10 py-4 border-2 border-red-500 text-red-400 hover:bg-red-600/20 font-bold rounded-full transition-all duration-300 hover:border-red-400 hover:scale-105">
+            <Link href="/playlisty" className="group px-8 md:px-10 py-3 md:py-4 border-2 border-red-500 text-red-400 hover:bg-red-600/20 font-bold rounded-full transition-all duration-300 hover:border-red-400 hover:scale-105 text-center">
               Počuť môj svet 🎧
             </Link>
           </div>
 
-          {/* Stats */}
-          <div className="border-t border-gray-800 pt-16 grid grid-cols-3 gap-12 animate-fade-in-up" style={{animationDelay: '0.9s'}}>
+          {/* Stats - MOBILE 3 COLUMNS SMALLER */}
+          <div className="border-t border-gray-800 pt-12 md:pt-16 grid grid-cols-3 gap-4 md:gap-12 animate-fade-in-up px-4" style={{animationDelay: '0.9s'}}>
             <div className="group cursor-default">
-              <div className="text-6xl md:text-7xl font-black text-white mb-2 group-hover:text-red-500 transition-all duration-500 group-hover:scale-110">
+              <div className="text-4xl sm:text-6xl md:text-7xl font-black text-white mb-1 md:mb-2 group-hover:text-red-500 transition-all duration-500 group-hover:scale-110">
                 50+
               </div>
-              <div className="text-sm text-gray-400 uppercase tracking-wider font-semibold">DJ Mixov</div>
+              <div className="text-[10px] sm:text-sm text-gray-400 uppercase tracking-wider font-semibold">DJ Mixov</div>
             </div>
             <div className="group cursor-default">
-              <div className="text-6xl md:text-7xl font-black text-white mb-2 group-hover:text-red-500 transition-all duration-500 group-hover:scale-110">
+              <div className="text-4xl sm:text-6xl md:text-7xl font-black text-white mb-1 md:mb-2 group-hover:text-red-500 transition-all duration-500 group-hover:scale-110">
                 15+
               </div>
-              <div className="text-sm text-gray-400 uppercase tracking-wider font-semibold">Rokov</div>
+              <div className="text-[10px] sm:text-sm text-gray-400 uppercase tracking-wider font-semibold">Rokov</div>
             </div>
             <div className="group cursor-default">
-              <div className="text-6xl md:text-7xl font-black text-white mb-2 group-hover:text-red-500 transition-all duration-500 group-hover:scale-110">
+              <div className="text-4xl sm:text-6xl md:text-7xl font-black text-white mb-1 md:mb-2 group-hover:text-red-500 transition-all duration-500 group-hover:scale-110">
                 ∞
               </div>
-              <div className="text-sm text-gray-400 uppercase tracking-wider font-semibold">Bass Drops</div>
+              <div className="text-[10px] sm:text-sm text-gray-400 uppercase tracking-wider font-semibold">Bass Drops</div>
             </div>
           </div>
         </div>
@@ -114,7 +114,7 @@ export default function HomePage() {
         </div>
       </section>
 
-            {/* ČO TU NÁJDEŠ - UPGRADED */}
+      {/* ČO TU NÁJDEŠ - UPGRADED */}
       <section className="py-32 px-6 relative overflow-hidden">
         {/* Animated background */}
         <div className="absolute inset-0 bg-gradient-to-b from-black via-red-950/5 to-black"></div>
@@ -318,4 +318,3 @@ export default function HomePage() {
     </main>
   )
 }
-

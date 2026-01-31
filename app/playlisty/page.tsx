@@ -156,42 +156,43 @@ export default function PlaylistyPage() {
                 style={{ animationDelay: `${index * 0.08}s` }}
               >
                 
-                {/* Klikateľný header */}
-                <button
-                  onClick={() => togglePlaylist(playlist.id)}
-                  className="w-full p-8 text-left flex items-center justify-between gap-6 transition-all duration-300"
-                >
-                  <div className="flex items-center gap-6">
-                    {/* Emoji ikona */}
-                    <div className={`
-                      text-5xl transition-all duration-500
-                      ${isOpen ? 'scale-110 rotate-12' : 'group-hover:scale-110'}
-                    `}>
-                      {playlist.emoji}
-                    </div>
-                    
-                    {/* Text */}
-                    <div>
-                      <h2 className={`
-                        text-2xl md:text-3xl font-bold mb-2 transition-colors duration-300
-                        ${isOpen ? 'text-red-400' : 'text-white group-hover:text-red-400'}
-                      `}>
-                        {playlist.title}
-                      </h2>
-                      <p className="text-gray-400 text-sm md:text-base">
-                        {playlist.description}
-                      </p>
-                    </div>
-                  </div>
+                {/* Klikateľný header - mobile friendly */}
+<button
+  onClick={() => togglePlaylist(playlist.id)}
+  className="w-full p-4 sm:p-6 md:p-8 text-left flex items-center justify-between gap-3 sm:gap-4 md:gap-6 transition-all duration-300"
+>
+  <div className="flex items-center gap-3 sm:gap-4 md:gap-6">
+    {/* Emoji ikona */}
+    <div className={`
+      text-3xl sm:text-4xl md:text-5xl transition-all duration-500
+      ${isOpen ? 'scale-110 rotate-12' : 'group-hover:scale-110'}
+    `}>
+      {playlist.emoji}
+    </div>
+    
+    {/* Text */}
+    <div>
+      <h2 className={`
+        text-xl sm:text-2xl md:text-3xl font-bold mb-1 md:mb-2 transition-colors duration-300
+        ${isOpen ? 'text-red-400' : 'text-white group-hover:text-red-400'}
+      `}>
+        {playlist.title}
+      </h2>
+      <p className="text-gray-400 text-xs sm:text-sm md:text-base">
+        {playlist.description}
+      </p>
+    </div>
+  </div>
 
-                  {/* Arrow icon */}
-                  <div className={`
-                    text-3xl transition-transform duration-500 text-red-400
-                    ${isOpen ? 'rotate-180' : 'group-hover:translate-y-1'}
-                  `}>
-                    ▼
-                  </div>
-                </button>
+  {/* Arrow icon */}
+  <div className={`
+    text-2xl md:text-3xl transition-transform duration-500 text-red-400 flex-shrink-0
+    ${isOpen ? 'rotate-180' : 'group-hover:translate-y-1'}
+  `}>
+    ▼
+  </div>
+</button>
+
 
                 {/* Expandable content */}
 <div
