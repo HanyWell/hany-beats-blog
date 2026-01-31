@@ -1,10 +1,16 @@
-import { type SchemaTypeDefinition } from 'sanity'
+// sanity/schemaTypes/index.ts
 
-import {blockContentType} from './blockContentType'
-import {categoryType} from './categoryType'
-import {postType} from './postType'
-import {authorType} from './authorType'
+import { type SchemaTypeDefinition } from 'sanity'  // typ pre schémy
 
-export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [blockContentType, categoryType, postType, authorType],
-}
+import { blockContentType } from './blockContentType' // import schémy Block Content
+import { categoryType } from './categoryType'         // import schémy Category
+import { postType } from './postType'                 // import schémy Post
+import { authorType } from './authorType'             // import schémy Author
+
+// Tu vytvoríme POLE všetkých schém a pomenujeme ho schemaTypes
+export const schemaTypes: SchemaTypeDefinition[] = [
+  blockContentType,
+  categoryType,
+  postType,
+  authorType,
+]

@@ -50,3 +50,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Audio súbory v priečinku public/mixy
+public/mixy/*.wav
+public/mixy/*.mp3
+public/mixy/*.flac
+
+ public/mixy/
+ *.wav
+ *.mp3
+ /public/mixy/

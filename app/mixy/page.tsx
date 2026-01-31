@@ -1,22 +1,68 @@
+// app/mixy/page.tsx
+// Stránka /mixy – viacero mixov, každý má vlastný audio prehrávač
+
 export default function MixyPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900/20 to-gray-900">
-      <div className="max-w-5xl mx-auto px-8 py-20">
-        <div className="text-center mb-16">
-          <div className="text-6xl mb-6">🎧</div>
-          <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-            Moje Mixy
-          </h1>
-          <p className="text-gray-400">
-            Drum & Bass, Liquid, Jump-up sets
-          </p>
-        </div>
+    <main className="min-h-screen bg-black text-white px-8 py-16">
+      {/* Hlavný nadpis */}
+      <h1 className="text-4xl font-bold mb-8">Moje Mixy</h1>
 
-        <div className="text-center text-gray-400 py-20">
-          <p className="text-xl mb-4">🚧 Pracujem na tom...</p>
-          <p>Mixy budú čoskoro!</p>
-        </div>
-      </div>
+      {/* 1. MIX */}
+      <section className="space-y-4 max-w-xl">
+        <h2 className="text-2xl font-semibold">
+          HanyWell – Genjutsu (DomaVPodkrovi)
+        </h2>
+
+        <audio
+          controls
+          className="w-full"
+          src="/mixy/HanyWell - Genjutsu (DomaVPodkrovi).wav"
+        >
+          Tvoj prehliadač nepodporuje prehrávanie audia.
+        </audio>
+
+        <p className="text-gray-400 text-sm">
+          Tento mix sa prehráva z priečinka public/mixy ako WAV súbor.
+        </p>
+      </section>
+
+      {/* 2. MIX */}
+      <section className="space-y-4 max-w-xl mt-10">
+        <h2 className="text-2xl font-semibold">
+          HanyWell - Genjutsu (Doma v Podkrovi) 02
+        </h2>
+
+        <audio
+          controls
+          className="w-full"
+          src="/mixy/HanyWell - Genjutsu (Doma v Podkrovi) 02.wav"
+        >
+          Tvoj prehliadač nepodporuje prehrávanie audia.
+        </audio>
+
+        <p className="text-gray-400 text-sm">
+          Druhý mix uložený v public/mixy.
+        </p>
+      </section>
+
+      {/* 3. MIX */}
+      <section className="space-y-4 max-w-xl mt-10">
+        <h2 className="text-2xl font-semibold">
+          HanyWell - Genjutsu (Doma v Podkrovi) 02
+        </h2>
+
+        <audio
+          controls
+          className="w-full"
+          src="/mixy/HanyWell - Genjutsu (Doma v Podkrovi) 03.wav"
+        >
+          Tvoj prehliadač nepodporuje prehrávanie audia.
+        </audio>
+
+        <p className="text-gray-400 text-sm">
+          Tretí mix, opäť z priečinka public/mixy.
+        </p>
+      </section>
     </main>
-  )
+  );
 }

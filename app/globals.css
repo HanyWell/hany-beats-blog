@@ -7,20 +7,16 @@
 :root {
   --background: #0a0a0a;
   --foreground: #ededed;
+  --font-poppins: 'Poppins', sans-serif;  /* Pridané */
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-poppins), Arial, Helvetica, sans-serif;  /* Poppins + fallback */
 }
 
-
-/* ===================================== */
-/* ČERVENÝ DJ ŠTÝL - KARTY A TEXTY */
-/* ===================================== */
-
-/* Neonový červený efekt pre karty */
+/* Tvoje pôvodné štýly - bez zmien */
 .red-card-glow {
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid rgba(220, 38, 38, 0.2);
@@ -34,7 +30,6 @@ body {
   border-color: rgba(220, 38, 38, 0.8);
 }
 
-/* Červený gradient text */
 .text-red-gradient {
   background: linear-gradient(to right, #dc2626, #b91c1c, #991b1b);
   -webkit-background-clip: text;
@@ -42,7 +37,6 @@ body {
   background-clip: text;
 }
 
-/* Hover glow na text a ikony */
 .hover-red-glow {
   transition: all 0.3s ease;
 }
@@ -52,11 +46,6 @@ body {
   color: #dc2626;
 }
 
-/* ===================================== */
-/* ANIMÁCIE - POSTUPNÉ ZOBRAZENIE */
-/* ===================================== */
-
-/* Smooth Glide - jemné vylietnutie zdola */
 @keyframes smoothGlide {
   from {
     opacity: 0;
@@ -68,15 +57,66 @@ body {
   }
 }
 
-/* Postupné zobrazenie kartičiek */
 .animate-glide-in {
   animation: smoothGlide 0.8s ease-out forwards;
 }
 
-/* Delay pre postupné zobrazovanie */
 .delay-100 { animation-delay: 0.1s; }
 .delay-200 { animation-delay: 0.2s; }
 .delay-300 { animation-delay: 0.3s; }
 .delay-400 { animation-delay: 0.4s; }
 .delay-500 { animation-delay: 0.5s; }
 .delay-600 { animation-delay: 0.6s; }
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Slow bounce */
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.animate-bounce-slow {
+  animation: bounce-slow 2s ease-in-out infinite;
+}
+
+/* Slow spin */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+/* Animated gradient */
+@keyframes gradient-x {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.animate-gradient-x {
+  animation: gradient-x 3s ease infinite;
+}
+
+/* Floating particles */
+@keyframes float-particle-1 {
+  0%, 100% { transform: translate(0, 0); opacity: 0.3; }
+  50% { transform: translate(10px, -30px); opacity: 0.8; }
+}
+@keyframes float-particle-2 {
+  0%, 100% { transform: translate(0, 0); opacity: 0.4; }
+  50% { transform: translate(-15px, -40px); opacity: 0.9; }
+}
+@keyframes float-particle-3 {
+  0%, 100% { transform: translate(0, 0); opacity: 0.3; }
+  50% { transform: translate(20px, -25px); opacity: 0.7; }
+}
+.animate-float-particle-1 { animation: float-particle-1 4s ease-in-out infinite; }
+.animate-float-particle-2 { animation: float-particle-2 5s ease-in-out infinite; }
+.animate-float-particle-3 { animation: float-particle-3 6s ease-in-out infinite; }

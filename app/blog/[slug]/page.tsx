@@ -2,6 +2,8 @@ import { createClient } from 'next-sanity'
 import imageUrlBuilder from '@sanity/image-url'
 import Image from 'next/image'
 import Link from 'next/link'
+import { PortableText } from '@portabletext/react'           // NOVÝ import
+import type { PortableTextBlock } from '@portabletext/types' // typ pre body
 import { SanityImageSource } from '@sanity/image-url/lib/types/types'
 
 const client = createClient({
@@ -21,7 +23,7 @@ interface Post {
   _id: string
   title: string
   slug: { current: string }
-  body: string
+  body: PortableTextBlock[]      // body je pole blokov, nie string
   _createdAt: string
   mainImage?: SanityImageSource
   author?: { 
@@ -130,10 +132,19 @@ export default async function PostDetailPage({
 
         {/* Text článku */}
         <div className="prose prose-invert prose-lg max-w-none">
-          <p className="text-gray-300 text-lg leading-relaxed whitespace-pre-wrap">
-            {post.body}
+  <PortableText
+    value={post.body}                         // tu dáme celé body pole
+    components={{                             // jednoduché štýly
+      block: {
+        normal: ({ children }) => (
+          <p className="text-gray-300 text-lg leading-relaxed mb-4">
+            {children}
           </p>
-        </div>
+        ),
+      },
+    }}
+  />
+</div>
       </article>
     </main>
   )
