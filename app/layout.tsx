@@ -4,6 +4,7 @@ import { Poppins } from 'next/font/google'
 import './globals.css'
 import Navigation from './components/Navigation'
 import Footer from './components/Footer'
+import FloatingLines from './components/FloatingLines'
 import { useState } from 'react'
 
 const poppins = Poppins({
@@ -23,8 +24,25 @@ export default function RootLayout({
   return (
     <>
       <html lang="sk" suppressHydrationWarning className={poppins.variable}>
-        <body className="bg-gray-900 text-white font-poppins antialiased">
+        <body className="bg-gray-900 text-white font-poppins antialiased relative">
           <Navigation />
+          
+          {/* Background Animation */}
+          <div className="fixed top-0 left-0 w-full h-full -z-10 flex justify-center items-center overflow-hidden pointer-events-none opacity-60">
+            <div style={{ width: '1080px', height: '1080px', position: 'relative' }}>
+              <FloatingLines
+                linesGradient={["#cf2020","#b91c1c","#0a0a0a","#ededed"]}
+                animationSpeed={1.8}
+                interactive
+                bendRadius={5}
+                bendStrength={-0.9}
+                mouseDamping={0.08}
+                parallax
+                parallaxStrength={0.3}
+              />
+            </div>
+          </div>
+
           {children}
           <Footer />
           
