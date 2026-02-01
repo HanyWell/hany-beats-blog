@@ -29,7 +29,7 @@ export default function RootLayout({
   {/* FloatingLines - z-0, dostáva mouse eventy */}
   <div className="fixed inset-0 z-0 overflow-hidden">
     <FloatingLines
-      linesGradient={["#4a0404","#990000","#ff1a1a","#1a0000"]}
+      linesGradient={["#ffffffea","#990000","#ff1a1a","#1a0000"]}
       animationSpeed={2}
       interactive={true}
       bendRadius={15}
