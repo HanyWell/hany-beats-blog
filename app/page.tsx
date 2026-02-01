@@ -139,9 +139,8 @@ export default function HomePage() {
           <div className="grid md:grid-cols-2 gap-8">
             
             {/* DJ SETS */}
-            <Link 
-              href="/mixy"
-              className="group relative p-12 bg-gradient-to-br from-zinc-950/30 to-black/20 backdrop-blur-sm border border-gray-900 hover:border-red-900/60 rounded-2xl transition-all duration-500 hover:-translate-y-3 overflow-hidden animate-fade-in-up"
+            <div 
+              className="group relative p-12 bg-gradient-to-br from-zinc-950/30 to-black/20 backdrop-blur-sm border border-gray-900 rounded-2xl transition-all duration-500 overflow-hidden animate-fade-in-up opacity-70"
               style={{animationDelay: '0.1s'}}
             >
               {/* Shine effect */}
@@ -159,11 +158,14 @@ export default function HomePage() {
                 <p className="text-gray-400 text-lg leading-relaxed group-hover:text-gray-300 transition-colors">
                   Moja DnB selekcia prevažne takú rezkejšie tempo ale aj deep setiky
                 </p>
+                <span className="inline-block mt-4 text-sm text-red-500/70 font-semibold">
+                  Coming Soon 🚧
+                </span>
               </div>
               
               {/* Bottom accent line */}
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            </Link>
+            </div>
 
             {/* PRODUCTION */}
             <div 
@@ -237,8 +239,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ŽÁNRE - UPGRADED */}
-      <section className="py-32 px-6 border-t border-gray-900 relative overflow-hidden">
+      {/* ŽÁNRE - UPGRADED */}\n      <section className="py-32 px-6 border-t border-gray-900 relative overflow-hidden">
        {/* Animated glow */}
 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-red-600/10 rounded-full blur-3xl -z-20"></div>
 
@@ -284,8 +285,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* KONTAKT - UPGRADED */}
-      <section className="py-32 px-6 border-t border-gray-900 relative overflow-hidden">
+      {/* KONTAKT - UPGRADED */}\n      <section className="py-32 px-6 border-t border-gray-900 relative overflow-hidden">
         {/* Background glow */}
 <div className="absolute inset-0 bg-gradient-to-b from-black via-red-950/5 to-black -z-20"></div>
 
