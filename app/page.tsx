@@ -138,35 +138,33 @@ export default function HomePage() {
           {/* Grid 2x2 */}
           <div className="grid md:grid-cols-2 gap-8">
             
-            {/* DJ SETS - Upravené na disabled */}
-<div 
-  className="group relative p-12 bg-gradient-to-br from-zinc-950/30 to-black/20 backdrop-blur-sm border border-gray-900 rounded-2xl transition-all duration-500 overflow-hidden animate-fade-in-up opacity-70"
-  style={{animationDelay: '0.1s'}}
->
+            {/* DJ SETS */}
+            <Link 
+              href="/mixy"
+              className="group relative p-12 bg-gradient-to-br from-zinc-950/30 to-black/20 backdrop-blur-sm border border-gray-900 hover:border-red-900/60 rounded-2xl transition-all duration-500 hover:-translate-y-3 overflow-hidden animate-fade-in-up"
+              style={{animationDelay: '0.1s'}}
+            >
               {/* Shine effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-500/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
               
               {/* Glow on hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-red-600/0 to-red-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               
-               <div className="relative z-10">
-    <div className="text-8xl mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">🎛️</div>
-    <div className="text-sm text-gray-600 font-bold mb-3">(01)</div>
-    <h3 className="text-4xl font-black text-white mb-4 group-hover:text-red-400 transition-colors">
-      DJ Sets
-    </h3>
-    <p className="text-gray-400 text-lg leading-relaxed group-hover:text-gray-300 transition-colors">
-      Moja DnB selekcia prevažne také rezkejšie tempo 😅  ale aj deep setiky a kľudnejšie tempo
-    </p>
-    {/* PRIDANÉ: Coming Soon label */}
-    <span className="inline-block mt-4 text-sm text-red-500/70 font-semibold">
-      Coming Soon 🚧
-    </span>
-  </div>
+              <div className="relative z-10">
+                <div className="text-8xl mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">🎛️</div>
+                <div className="text-sm text-gray-600 font-bold mb-3">(01)</div>
+                <h3 className="text-4xl font-black text-white mb-4 group-hover:text-red-400 transition-colors">
+                  DJ Sets
+                </h3>
+                <p className="text-gray-400 text-lg leading-relaxed group-hover:text-gray-300 transition-colors">
+                  Moja DnB selekcia prevažne takú rezkejšie tempo ale aj deep setiky
+                </p>
+              </div>
               
               {/* Bottom accent line */}
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            </div> 
+            </Link>
+
             {/* PRODUCTION */}
             <div 
              className="group relative p-12 bg-gradient-to-br from-zinc-950/30 to-black/20 backdrop-blur-sm border border-gray-900 rounded-2xl transition-all duration-500 overflow-hidden animate-fade-in-up opacity-70"
@@ -239,8 +237,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ŽÁNRE - UPGRADED */}
-      <section className="py-32 px-6 border-t border-gray-900 relative overflow-hidden">
+      {/* ŽÁNRE - UPGRADED */}\n      <section className="py-32 px-6 border-t border-gray-900 relative overflow-hidden">
        {/* Animated glow */}
 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-red-600/10 rounded-full blur-3xl -z-20"></div>
 
@@ -286,8 +283,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* KONTAKT - UPGRADED */}
-      <section className="py-32 px-6 border-t border-gray-900 relative overflow-hidden">
+      {/* KONTAKT - UPGRADED */}\n      <section className="py-32 px-6 border-t border-gray-900 relative overflow-hidden">
         {/* Background glow */}
 <div className="absolute inset-0 bg-gradient-to-b from-black via-red-950/5 to-black -z-20"></div>
 
@@ -306,7 +302,7 @@ export default function HomePage() {
               <span className="relative z-10">🎵</span>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-500/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
             </a>
-            <a href="https://www.youtube.com/@TheDJHany"  target="_blank" rel="noopener noreferrer" className="group w-20 h-20 border-2 border-gray-800 rounded-full flex items-center justify-center hover:border-red-600 hover:bg-red-600/10 transition-all text-4xl hover:scale-110 relative overflow-hidden">
+            <a href="https://www.youtube.com/@hanybeats" target="_blank" rel="noopener noreferrer" className="group w-20 h-20 border-2 border-gray-800 rounded-full flex items-center justify-center hover:border-red-600 hover:bg-red-600/10 transition-all text-4xl hover:scale-110 relative overflow-hidden">
               <span className="relative z-10">▶️</span>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-500/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
             </a>
