@@ -296,15 +296,15 @@ export default function HomePage() {
           
           {/* Social icons */}
           <div className="flex justify-center gap-6 mb-16 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-            <a href="https://www.instagram.com/hanybeats" target="_blank" rel="noopener noreferrer" className="group w-20 h-20 border-2 border-gray-800 rounded-full flex items-center justify-center hover:border-red-600 hover:bg-red-600/10 transition-all text-4xl hover:scale-110 relative overflow-hidden">
+            <a href="https://www.instagram.com/_hany_well_/" target="_blank" rel="noopener noreferrer" className="group w-20 h-20 border-2 border-gray-800 rounded-full flex items-center justify-center hover:border-red-600 hover:bg-red-600/10 transition-all text-4xl hover:scale-110 relative overflow-hidden">
               <span className="relative z-10">📷</span>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-500/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
             </a>
-            <a href="https://soundcloud.com/hanybeats" target="_blank" rel="noopener noreferrer" className="group w-20 h-20 border-2 border-gray-800 rounded-full flex items-center justify-center hover:border-red-600 hover:bg-red-600/10 transition-all text-4xl hover:scale-110 relative overflow-hidden">
+            <a href="https://on.soundcloud.com/ec63S8v1qUqan9cIQq" target="_blank" rel="noopener noreferrer" className="group w-20 h-20 border-2 border-gray-800 rounded-full flex items-center justify-center hover:border-red-600 hover:bg-red-600/10 transition-all text-4xl hover:scale-110 relative overflow-hidden">
               <span className="relative z-10">🎵</span>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-500/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
             </a>
-            <a href="https://www.youtube.com/@hanybeats" target="_blank" rel="noopener noreferrer" className="group w-20 h-20 border-2 border-gray-800 rounded-full flex items-center justify-center hover:border-red-600 hover:bg-red-600/10 transition-all text-4xl hover:scale-110 relative overflow-hidden">
+            <a href="https://www.youtube.com/@TheDJHany" target="_blank" rel="noopener noreferrer" className="group w-20 h-20 border-2 border-gray-800 rounded-full flex items-center justify-center hover:border-red-600 hover:bg-red-600/10 transition-all text-4xl hover:scale-110 relative overflow-hidden">
               <span className="relative z-10">▶️</span>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-500/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
             </a>
