@@ -1,3 +1,5 @@
+'use client' 
+
 import { useEffect, useRef } from 'react';
 import {
   Scene,
@@ -324,9 +326,14 @@ export default function FloatingLines({
       enableBottom: { value: enabledWaves.includes('bottom') },
 
       topLineCount: { value: topLineCount },
-      middleLineCount: { value: middleLineCount },\n      bottomLineCount: { value: bottomLineCount },
+      middleLineCount: { value: middleLineCount },
+      bottomLineCount: { value: bottomLineCount },
 
-      topLineDistance: { value: topLineDistance },\n      middleLineDistance: { value: middleLineDistance },\n      bottomLineDistance: { value: bottomLineDistance },
+
+      topLineDistance: { value: topLineDistance },
+      middleLineDistance: { value: middleLineDistance },
+      bottomLineDistance: { value: bottomLineDistance },
+
 
       topWavePosition: {
         value: new Vector3(topWavePosition?.x ?? 10.0, topWavePosition?.y ?? 0.5, topWavePosition?.rotate ?? -0.4)
@@ -405,70 +412,69 @@ export default function FloatingLines({
     }
 
     const handlePointerMove = (event: PointerEvent) => {
-      const rect = renderer.domElement.getBoundingClientRect();
-      const x = event.clientX - rect.left;
-      const y = event.clientY - rect.top;
-      const dpr = renderer.getPixelRatio();
+  const rect = renderer.domElement.getBoundingClientRect();
+  const x = event.clientX - rect.left;
+  const y = event.clientY - rect.top;
+  const dpr = renderer.getPixelRatio();
 
-      targetMouseRef.current.set(x * dpr, (rect.height - y) * dpr);
-      targetInfluenceRef.current = 1.0;
+  targetMouseRef.current.set(x * dpr, (rect.height - y) * dpr);
+  targetInfluenceRef.current = 1.0;
 
-      if (parallax) {
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const offsetX = (x - centerX) / rect.width;
-        const offsetY = -(y - centerY) / rect.height;
-        targetParallaxRef.current.set(offsetX * parallaxStrength, offsetY * parallaxStrength);
-      }
-    };
+  if (parallax) {
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const offsetX = (x - centerX) / rect.width;
+    const offsetY = -(y - centerY) / rect.height;
+    targetParallaxRef.current.set(offsetX * parallaxStrength, offsetY * parallaxStrength);
+  }
+};
 
-    const handlePointerLeave = () => {
-      targetInfluenceRef.current = 0.0;
-    };
+if (interactive) {
+  window.addEventListener('pointermove', handlePointerMove);
+}
 
-    if (interactive) {
-      renderer.domElement.addEventListener('pointermove', handlePointerMove);
-      renderer.domElement.addEventListener('pointerleave', handlePointerLeave);
-    }
+let raf = 0;
+const renderLoop = () => {
+  uniforms.iTime.value = clock.getElapsedTime();
 
-    let raf = 0;
-    const renderLoop = () => {
-      uniforms.iTime.value = clock.getElapsedTime();
+  if (interactive) {
+    currentMouseRef.current.lerp(targetMouseRef.current, mouseDamping);
+    uniforms.iMouse.value.copy(currentMouseRef.current);
 
-      if (interactive) {
-        currentMouseRef.current.lerp(targetMouseRef.current, mouseDamping);
-        uniforms.iMouse.value.copy(currentMouseRef.current);
+    currentInfluenceRef.current += (targetInfluenceRef.current - currentInfluenceRef.current) * mouseDamping;
+    uniforms.bendInfluence.value = currentInfluenceRef.current;
+  }
 
-        currentInfluenceRef.current += (targetInfluenceRef.current - currentInfluenceRef.current) * mouseDamping;
-        uniforms.bendInfluence.value = currentInfluenceRef.current;
-      }
+  if (parallax) {
+    currentParallaxRef.current.lerp(targetParallaxRef.current, mouseDamping);
+    uniforms.parallaxOffset.value.copy(currentParallaxRef.current);
+  }
 
-      if (parallax) {
-        currentParallaxRef.current.lerp(targetParallaxRef.current, mouseDamping);
-        uniforms.parallaxOffset.value.copy(currentParallaxRef.current);
-      }
+  renderer.render(scene, camera);
+  raf = requestAnimationFrame(renderLoop);
+};
 
-      renderer.render(scene, camera);
-      raf = requestAnimationFrame(renderLoop);
-    };\n    renderLoop();
+renderLoop();
 
-    return () => {
-      cancelAnimationFrame(raf);
-      if (ro && containerRef.current) {
-        ro.disconnect();
-      }\n
-      if (interactive) {
-        renderer.domElement.removeEventListener('pointermove', handlePointerMove);
-        renderer.domElement.removeEventListener('pointerleave', handlePointerLeave);
-      }
+return () => {
+  const container = containerRef.current;
+  
+  cancelAnimationFrame(raf);
+  if (ro && container) {
+    ro.disconnect();
+  }
+  if (interactive) {
+    window.removeEventListener('pointermove', handlePointerMove);
+  }
 
-      geometry.dispose();
-      material.dispose();
-      renderer.dispose();
-      if (renderer.domElement.parentElement) {
-        renderer.domElement.parentElement.removeChild(renderer.domElement);
-      }
-    };\n  }, [
+  geometry.dispose();
+  material.dispose();
+  renderer.dispose();
+  if (renderer.domElement.parentElement) {
+    renderer.domElement.parentElement.removeChild(renderer.domElement);
+  }
+};
+  }, [
     linesGradient,
     enabledWaves,
     lineCount,
