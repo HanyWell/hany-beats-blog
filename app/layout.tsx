@@ -23,7 +23,10 @@ export default function RootLayout({
 
   return (
     <>
-      <html lang="sk" suppressHydrationWarning className={poppins.variable}>
+      <html lang="sk" suppressHydrationWarning className={poppins.variable} style={{ colorScheme: 'dark' }}>
+        <head>
+          <meta name="color-scheme" content="dark" />
+        </head>
         <body className="bg-gray-900 text-white font-poppins antialiased relative">
   
   {/* FloatingLines - z-0, dostáva mouse eventy */}
