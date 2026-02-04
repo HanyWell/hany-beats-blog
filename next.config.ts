@@ -20,9 +20,7 @@ const nextConfig: NextConfig = {
     ]
   },
   // Pomoc pre Sanity s Next.js 16
-  experimental: {
-    serverComponentsExternalPackages: ['@sanity/client', '@sanity/image-url']
-  }
+  serverExternalPackages: ['@sanity/client', '@sanity/image-url']
 }
 
 export default nextConfig

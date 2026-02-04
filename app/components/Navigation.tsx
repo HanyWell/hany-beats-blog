@@ -1,6 +1,26 @@
-import Link from 'next/link'  // Link na klikanie medzi stránkami
+'use client'
 
-export default function Navigation() { // hlavný Navigation komponent
+import Link from 'next/link'
+import { useState } from 'react'
+import PillNav from '@/components/ui/PillNav'
+
+export default function Navigation() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen)
+  }
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false)
+  }
+
+  const navItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'Mixy', href: '/mixy' },
+    { label: 'Playlisty', href: '/playlisty' },
+  ]
   return (
     <nav className="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-red-900/60">
       {/* horný pruh, drží sa hore pri scrollovaní */}
@@ -8,7 +28,7 @@ export default function Navigation() { // hlavný Navigation komponent
         <div className="flex items-center justify-between">
           
           {/* Logo vľavo */}
-          <Link href="/" className="flex items-center gap-3 group">
+          <Link href="/" className="flex items-center gap-3 group" onClick={closeMobileMenu}>
             {/* DJ ikona – pri hover sa zväčší */}
             <span className="text-3xl group-hover:scale-110 transition-transform duration-300">
               🎧
@@ -19,41 +39,76 @@ export default function Navigation() { // hlavný Navigation komponent
             </span>
           </Link>
 
-          {/* Menu vpravo */}
-          <div className="flex items-center gap-6 md:gap-8">
-            {/* sivý text, pri hover červený */}
+          {/* Desktop menu - PillNav */}
+          <div className="hidden md:flex items-center gap-8">
+            <PillNav items={navItems} className="mr-4" />
+
+            {/* hlavné červené tlačidlo – rovnaký vibe ako ostatné CTA */}
+            <Link
+              href="/about"
+              className="px-6 py-2 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white rounded-full font-semibold transition-all duration-300 shadow-[0_0_25px_rgba(220,38,38,0.5)] hover:shadow-[0_0_40px_rgba(220,38,38,0.8)] hover:scale-105"
+            >
+              About
+            </Link>
+          </div>
+
+          {/* Hamburger menu tlačidlo - viditeľné len na mobiloch */}
+          <button
+            onClick={toggleMobileMenu}
+            className="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1 group"
+            aria-label="Toggle mobile menu"
+          >
+            <span className={`block w-6 h-0.5 bg-gray-300 transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
+            <span className={`block w-6 h-0.5 bg-gray-300 transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
+            <span className={`block w-6 h-0.5 bg-gray-300 transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
+          </button>
+        </div>
+      </div>
+
+      {/* Mobilné menu - slide down panel */}
+      <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+        isMobileMenuOpen ? 'max-h-96' : 'max-h-0'
+      }`}>
+        <div className="bg-black/95 backdrop-blur-md border-t border-red-900/60">
+          <div className="px-6 py-4 space-y-3">
+            {/* Mobilné menu položky */}
             <Link
               href="/"
-              className="text-gray-300 hover:text-red-400 font-medium transition-colors duration-200"
+              className="block text-gray-300 hover:text-red-400 font-medium transition-colors duration-200 py-2"
+              onClick={closeMobileMenu}
             >
               Home
             </Link>
 
             <Link
               href="/blog"
-              className="text-gray-300 hover:text-red-400 font-medium transition-colors duration-200"
+              className="block text-gray-300 hover:text-red-400 font-medium transition-colors duration-200 py-2"
+              onClick={closeMobileMenu}
             >
               Blog
             </Link>
 
             <Link
               href="/mixy"
-              className="text-gray-300 hover:text-red-400 font-medium transition-colors duration-200"
+              className="block text-gray-300 hover:text-red-400 font-medium transition-colors duration-200 py-2"
+              onClick={closeMobileMenu}
             >
               Mixy
             </Link>
 
             <Link
               href="/playlisty"
-              className="text-gray-300 hover:text-red-400 font-medium transition-colors duration-200"
+              className="block text-gray-300 hover:text-red-400 font-medium transition-colors duration-200 py-2"
+              onClick={closeMobileMenu}
             >
               Playlisty
             </Link>
 
-            {/* hlavné červené tlačidlo – rovnaký vibe ako ostatné CTA */}
+            {/* About tlačidlo - plná šírka na mobiloch */}
             <Link
               href="/about"
-              className="px-6 py-2 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white rounded-full font-semibold transition-all duration-300 shadow-[0_0_25px_rgba(220,38,38,0.5)] hover:shadow-[0_0_40px_rgba(220,38,38,0.8)] hover:scale-105"
+              className="block w-full text-center px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white rounded-full font-semibold transition-all duration-300 shadow-[0_0_25px_rgba(220,38,38,0.5)] hover:shadow-[0_0_40px_rgba(220,38,38,0.8)] hover:scale-105 mt-4"
+              onClick={closeMobileMenu}
             >
               About
             </Link>

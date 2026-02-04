@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { FaSoundcloud, FaInstagram, FaFacebook, FaYoutube } from 'react-icons/fa'
+import { socials } from '@/config/socials'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -37,7 +38,7 @@ export default function Footer() {
             <h3 className="text-white font-semibold mb-4">Socials</h3>
             <div className="flex gap-4">
               <a 
-                href="https://on.soundcloud.com/ec63S8v1qUqan9cIQq" 
+                href={socials.soundcloud} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-12 h-12 bg-orange-500/20 hover:bg-orange-500 text-orange-400 hover:text-white rounded-xl flex items-center justify-center text-xl transition-all duration-300 hover:scale-110 shadow-lg hover:shadow-orange-400/50"
@@ -46,7 +47,7 @@ export default function Footer() {
                 <FaSoundcloud />
               </a>
               <a 
-                href="https://www.instagram.com/_hany_well_/" 
+                href={socials.instagram} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-12 h-12 bg-gradient-to-br from-purple-500/20 to-pink-500/20 hover:from-purple-500 hover:to-pink-500 text-pink-400 hover:text-white rounded-xl flex items-center justify-center text-xl transition-all duration-300 hover:scale-110 shadow-lg hover:shadow-pink-400/50"
@@ -55,7 +56,7 @@ export default function Footer() {
                 <FaInstagram />
               </a>
               <a 
-                href="https://www.facebook.com/HanyWellik/" 
+                href={socials.facebook} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-12 h-12 bg-blue-500/20 hover:bg-blue-500 text-blue-400 hover:text-white rounded-xl flex items-center justify-center text-xl transition-all duration-300 hover:scale-110 shadow-lg hover:shadow-blue-400/50"
@@ -64,7 +65,7 @@ export default function Footer() {
                 <FaFacebook />
               </a>
               <a 
-                href="https://www.youtube.com/@TheDJHany" 
+                href={socials.youtube} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-12 h-12 bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white rounded-xl flex items-center justify-center text-xl transition-all duration-300 hover:scale-110 shadow-lg hover:shadow-red-400/50"
