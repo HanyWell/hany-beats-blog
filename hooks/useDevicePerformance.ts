@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { BREAKPOINTS } from '@/lib/constants'
 
 export type PerformanceMode = 'high' | 'low'
 

@@ -120,7 +120,9 @@ export interface BlogCardProps {
     _publishedAt: string
   }
   index: number
-  sanityClient?: any // Sanity client injektovaný zvonku - ponechané ako any pre hybridný prístup
+  sanityClient?: {
+    config: () => { projectId: string; dataset: string }
+  }
 }
 
 // Props pre TrueFocus komponent

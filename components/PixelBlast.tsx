@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { EffectComposer, EffectPass, RenderPass, Effect } from 'postprocessing';
-import { ThreeContext, PixelBlastProps, HexToVec3Function } from '@/types/three';
+import { ThreeContext, PixelBlastProps } from '@/types/three';
 import './PixelBlast.css';
 
 const createTouchTexture = () => {

@@ -1,7 +1,7 @@
 // sanity/schemas/mix.ts
 import { SanityRule, SanityPrepareOptions } from '@/types/sanity'
 
-export default {
+const mixSchema = {
   name: 'mix',
   title: 'Mix',
   type: 'document',
@@ -123,3 +123,5 @@ export default {
     }
   }
 }
+
+export default mixSchema

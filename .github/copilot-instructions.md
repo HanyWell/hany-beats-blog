@@ -1,123 +1,216 @@
-# Hany Beats - AI Coding Agent Instructions
+# Hany Beats - Inštrukcie pre AI Coding Agentov
 
-## Project Overview
-Next.js 16 portfolio site for a Drum & Bass DJ with Sanity CMS, featuring mixes, blog posts, playlists, and Slovak/Czech localization. Built with React 19, Framer Motion animations, Three.js 3D effects, and Tailwind CSS 4.
+## Prehľad Projektu
+Next.js 16 portfolio stránka pre Drum & Bass DJ s Sanity CMS (project `z7bgld94`, dataset `production`), obsah mixy, blog posty a playlisty. Postavené na React 19, Framer Motion animáciach, Three.js 3D efektoch a Tailwind CSS 4. Slovenský/český obsah s podporou lokalizácie.
 
-## Architecture & Data Flow
+**Tech Stack**: Next.js 16.1.6, React 19.2.3, Sanity 4.22, Framer Motion 12.29, Tailwind CSS 4, TypeScript 5, GSAP 3.14
 
-### Sanity CMS Integration
-- **Dual client setup**: `app/lib/sanity.client.ts` (frontend) and `sanity/lib/client.ts` (backend)
-- **Project**: `z7bgld94` / `production` dataset (see [sanity.config.ts](sanity.config.ts))
-- **Content types**: `mix` (audio files + tracklists), `post` (blog), both in `sanity/schemas/`
-- **Data fetching**: Use `getMixBySlug()`, `getAllMixes()` in [app/lib/mixes.ts](app/lib/mixes.ts) - follows Next.js 16 async params pattern
+## Architektúra a Tok Dát
 
-### Routing Structure
-- **App Router** with Slovak content (`/mixy`, `/playlisty`, `/blog`)
-- **Dynamic routes**: `app/mixy/[slug]/page.tsx` uses `generateStaticParams()` for SSG
-- **Production rewrites**: Sanity Studio (`/y/*`) redirected to 404 in [next.config.ts](next.config.ts)
+### Sanity CMS Integrácia
+- **Frontend klient**: [app/lib/sanity.client.ts](app/lib/sanity.client.ts) - `useCdn: false` pre čerstvé dáta
+- **Backend klient**: `sanity/lib/client.ts` - pre server-side operácie
+- **Projekt**: `z7bgld94` / `production` dataset (pozri [sanity.config.ts](sanity.config.ts))
+- **Schémy**: `mix` (audio + tracklisty), `post` (blog) v [sanity/schemas/](sanity/schemas/)
+- **Dátové funkcie**: `getMixBySlug()`, `getAllMixes()` v [app/lib/mixes.ts](app/lib/mixes.ts)
+- **Next.js 16 pattern**: Async params - `const { slug } = await params` v dynamických routách
 
-### Component Organization
-- **Page-level**: `app/components/` (HeroSection, TracklistSection, Navigation)
-- **Reusable UI**: `components/ui/` (AudioCard, BlogCard, SectionHeader)
-- **Visual effects**: `components/PixelBlast.tsx`, `components/FloatingLines.tsx` (background animations)
-- **Lazy loading**: Use `lazy()` + `Suspense` for performance (see [app/page.tsx](app/page.tsx))
+### Architekúra Audio Systému
+**Tok dát**: Page komponenta → `setCurrentTrack()` → `AudioContext` → `GlobalAudioPlayer` na spodku
 
-## Development Workflows
+- **Globálny stav** [contexts/AudioContext.tsx](contexts/AudioContext.tsx):
+  - `setCurrentTrack({id, title, audioSrc, artist?, slug?})` - spúšťa prehrávanie
+  - `registerControls()` - registrácia ovládacích prvkov
+  - `updateTime(time, duration)` - synchronizácia času
 
-### Running the Project
+- **Audio hook** [hooks/useAudioPlayer.ts](hooks/useAudioPlayer.ts):
+  - Spravuje HTML5 Audio element cez ref
+  - Vracia `{isPlaying, seek(time), togglePlay(), currentTime, duration, ...}`
+  - Chyby ako `error` state (slovenské správy)
+
+- **Player komponenty**:
+  - `GlobalAudioPlayer` - persistentný player dole (všetky tracky)
+  - `DJAudioPlayer` - plne vybavený s waveformom
+  - **Správa**: Page komponenty volajú `setCurrentTrack()`, NEMAJÚ svoj `<audio>`
+
+- **Synchronizácia**: Page komponenty poolujú `getCurrentTime()` každých 100ms
+
+### Štruktúra Routingu (App Router)
+- **Slovenské routes**: `/mixy`, `/mixy/[slug]`, `/blog`, `/playlisty`, `/about`
+- **Dynamické routes**: `generateStaticParams()` pre SSG
+- **Async params**: `const { slug } = await params` - POVINNÉ v Next.js 16
+
+### Organizácia Komponentov
+- **App-specific**: [app/components/](app/components/) (HeroSection, TracklistSection, Navigation, Footer)
+- **Reusable UI**: [components/ui/](components/ui/) (AudioCard, BlogCard, SectionHeader, FlipCard)
+- **Audio**: `GlobalAudioPlayer`, `DJAudioPlayer`, `DJAudioPlayerWrapper` (SSR-safe)
+- **Efekty**: `PixelBlast`, `FloatingLines`, `GeometricBackground` (pozaďové animácie)
+- **Performance**: Lazy load s `React.lazy()` + `Suspense`
+
+## Vývojové Workflow
+
+### Spustenie Projektu (2 terminály)
 ```bash
-npm run dev              # Next.js dev server (port 3000)
-npx sanity dev           # Sanity Studio (requires separate terminal)
-npm run build            # Production build
-npm run lint             # ESLint check
+# Terminal 1: Next.js dev server
+npm run dev              # http://localhost:3000
+
+# Terminal 2: Sanity Studio (oddelený proces)
+npx sanity dev           # http://localhost:3333
 ```
 
-### Sanity Schema Changes
-1. Edit schemas in `sanity/schemas/*.ts` (mix.ts, post.ts)
-2. Export from `sanity/schemaTypes/index.ts`
-3. Restart Sanity Studio to see changes
+### Build & Testing
+```bash
+npm run build            # Production build
+npm run lint             # ESLint
+npm start                # Produkčný server
+```
 
-### Adding shadcn Components
-- Config: [components.json](components.json) with `@react-bits` registry
-- Aliases: `@/components`, `@/lib`, `@/hooks`
-- Install: `npx shadcn@latest add <component>`
+### Sanity Schémy (Zmeny)
+1. Upravte v [sanity/schemas/](sanity/schemas/) (mix.ts, post.ts)
+2. Exportujte z [sanity/schemaTypes/index.ts](sanity/schemaTypes/index.ts)
+3. Reštartujte Sanity Studio (`npx sanity dev`)
+4. **Validácia**: `validation: (Rule: SanityRule) => Rule.required().regex(/pattern/)`
+5. Príklad časového poľa: `.regex(/^\d{1,2}:\d{2}$/, 'Formát: MM:SS')`
 
-## Code Conventions
+## Konvencie Kódu
 
-### Animation System
-- **Centralized constants**: [lib/constants.ts](lib/constants.ts) defines ALL durations, easing, spacing
-- **Reusable variants**: [lib/animationVariants.ts](lib/animationVariants.ts) exports `fadeInVariants`, `containerVariants`, etc.
-- **Pattern**: Never use magic numbers - reference `ANIMATION_DURATIONS.SMOOTH` instead of `0.8`
-- **Example**: See [app/components/HeroModern.tsx](app/components/HeroModern.tsx) for motion component usage
+### Animačný Systém (KRITICKÉ)
+- **Žiadne magické čísla**: VŽDY referencujte [lib/constants.ts](lib/constants.ts)
+  - `ANIMATION_DURATIONS` (SMOOTH: 0.8, FAST: 0.3, SLOW: 1.2)
+  - `SPACING_VALUES` (SECTION_VERTICAL: 32, CARD_PADDING: 4)
+  - `TRANSITION_EASING` (SMOOTH, BOUNCE, LINEAR)
+- **Framer Motion varianty**: [lib/animationVariants.ts](lib/animationVariants.ts) - reuse `fadeInVariants`, `containerVariants`
+- **Príklad**: ✅ `duration: ANIMATION_DURATIONS.SMOOTH` | ❌ `duration: 0.8`
 
-### Language & Content
-- **Slovak localization**: UI text, blog titles, field names (`Dátum publikovania`, `Tracklist`)
-- **Comments**: Mixed Slovak/Czech (historic artifact - keep existing style)
-- **Date formatting**: `toLocaleDateString('sk', {...})` for consistency
+### Jazyk a Obsah
+- **UI texty**: Slovenčina ("Späť", "Načítavam", "Tracklist")
+- **Obsah z Sanity**: Môže byť SK alebo CZ (bez zmeny)
+- **Dátumy**: `toLocaleDateString('sk', {year: 'numeric', month: 'long', day: 'numeric'})`
+- **Komentáre**: SK/CZ zmiešané (historický štýl - zachovajte)
 
-### TypeScript Patterns
-- **Functional components only** - no classes
-- **Strict types**: Custom types in `types/sanity.ts`, `types/components.ts`
-- **Async params**: Next.js 16 requires `const { slug } = await params` in dynamic routes
-- **Sanity rules**: Use `SanityRule` type for validation (see [sanity/schemas/mix.ts](sanity/schemas/mix.ts#L13))
+### TypeScript & Next.js 16
+- **Komponenty**: Iba funkcionálne, bez tried
+- **Striktné typy**: [types/sanity.ts](types/sanity.ts), [types/components.ts](types/components.ts)
+- **Async params**: `const { slug } = await params` - POVINNÉ
+- **Server components**: Default (rýchlejšie) - `'use client'` iba pre hooku/eventy
 
-### Styling Approach
-- **Tailwind CSS 4** with custom design system
-- **Color scheme**: Black backgrounds, red accent (`#E02020`, red-500/600)
-- **Glass morphism**: Use `bg-white/5 backdrop-blur-md border border-white/10` pattern
-- **Responsive**: Mobile-first with `sm:`, `md:` breakpoints
+### Styling & Tailwind CSS 4
+- **Farby**: `bg-black` (pozadia), `#E02020`/`red-500` (akcent), `white/10` (borders)
+- **Glass morphism**: `bg-white/5 backdrop-blur-md border border-white/10`
+- **Responzívne**: Mobile-first `sm:`, `md:`, `lg:` breakpointy
+- **Z-layers**:
+  - `-z-30`: Pozaďové efekty (PixelBlast, FloatingLines)
+  - `-z-20`: Geometrické pozadia
+  - `z-10`: Obsah
+  - `z-50`: Modály, prehrávače (fixed dole)
 
-## Key Integration Points
+## Kritické Integračné Toky
 
-### Sanity to Next.js Pipeline
-1. Content created in Sanity Studio (port varies)
-2. Fetched via `createClient()` with `useCdn: false` (fresh data)
-3. Rendered in Server Components (default) or Client Components (`'use client'`)
-4. Images: Configured in [next.config.ts](next.config.ts) `remotePatterns` for `cdn.sanity.io`
+### Sanity CMS → Next.js Rendering
+```
+[Sanity Studio] --REST API--> [app/lib/sanity.client.ts] --query--> [Components] --> [HTML]
+```
+- Content: Sanity Studio (`z7bgld94`/`production`)
+- Frontend: `useCdn: false` pre real-time dáta
+- Images: `remotePatterns: ["cdn.sanity.io"]` v [next.config.ts](next.config.ts)
+- Rendering: Server components (default) sú rýchlejšie
 
-### Audio Playback
-- **Native HTML5**: `<audio controls src={mix.audioFile.asset.url} />`
-- **File storage**: Sanity handles audio files via `type: 'file'` field
-- **No external player**: Keep it simple with native controls
+### Audio Playback Flow (KRITICKÉ)
+```
+User click [Play] 
+  → setCurrentTrack({id, title, audioSrc, slug}) 
+  → AudioContext updates 
+  → GlobalAudioPlayer renders <audio>
+  → Page komponenty pool getCurrentTime() 100ms
+  → Click track time → seek(time) → callback
+```
+- **Page komponenty**: Volajú `setCurrentTrack()`, NEMAJÚ `<audio>`
+- **GlobalAudioPlayer**: Spravuje skutočný audio element
+- **Príklad**: [app/mixy/[slug]/page.tsx](app/mixy/[slug]/page.tsx#L12-L25)
 
-### Visual Effects Layer
-- **PixelBlast**: Fixed background with particle system (see [app/page.tsx](app/page.tsx#L34))
-- **Three.js**: Used via `@react-three/fiber` for 3D effects (not yet widely implemented)
-- **Performance**: Effects use `transparent` prop and `edgeFade` to minimize render cost
+## Časté Chyby a Anti-Patterny
 
-## Common Pitfalls
+### Audio System
+❌ Komponenta má svoj `<audio>` element  
+✅ Volajte `setCurrentTrack()` z contextu
 
-### Don't Do This
-❌ Hardcode animation values: `duration: 0.8`  
-✅ Use constants: `duration: ANIMATION_DURATIONS.SMOOTH`
+❌ Hardcode audio URL ako prop  
+✅ Získajte z Sanity: `audioFile.asset.url`
 
-❌ Mix English UI text with Slovak content  
-✅ Keep UI in Slovak: "Späť na mixy" not "Back to mixes"
+❌ Viacero audio elementov  
+✅ Existuje iba jeden - `GlobalAudioPlayer`
 
-❌ `const { slug } = params` in Next.js 16  
-✅ `const { slug } = await params` (async required)
+### Animácie & Styling
+❌ Hardcoded: `duration: 0.8, easing: [0.4, 0, 0.2, 1]`  
+✅ Konštanty: `duration: ANIMATION_DURATIONS.SMOOTH`
 
-❌ Inline styles for common patterns  
-✅ Use Tailwind classes or extract to [lib/utils.ts](lib/utils.ts)
+❌ Inline Tailwind: `style={{ padding: '16px' }}`  
+✅ Triedy: `p-4` + konštanty
 
-### When Adding Features
-1. **Check constants first**: Is duration/spacing/color already defined?
-2. **Reuse animation variants**: Don't recreate fade-in logic
-3. **Follow Slovak naming**: New routes should use Slovak paths (`/o-mne` not `/about`)
-4. **Test both clients**: Changes may affect Studio and frontend differently
+### Next.js 16
+❌ `const { slug } = params` (synchronne)  
+✅ `const { slug } = await params` (async)
 
-## External Dependencies
-- **Sanity**: CMS with Vision plugin enabled (GROQ query testing)
-- **Framer Motion**: v12.29+ with motion components (not framer-motion/three)
-- **Lucide Icons**: Primary icon library (e.g., `ArrowLeft`, `Music`)
-- **shadcn/ui**: Via components.json, uses `@react-bits` registry
-- **Three.js**: `@react-three/fiber` + `@react-three/drei` for 3D
+❌ Miešať anglický UI s SK obsahom  
+✅ UI: vždy slovenčina
 
-## Performance Considerations
-- **Image optimization**: Next.js Image with Sanity CDN
-- **Code splitting**: Lazy load heavy sections (Features, Contact)
-- **Client components**: Only when needed for interactivity (use `'use client'` sparingly)
-- **Background effects**: Limited to one per page, use `fixed` positioning
+❌ Zabudnúť `useCdn: false`  
+✅ Frontend klient vždy s čerstvými dátami
+
+## Externe Knižnice
+
+| Balík | Verzia | Účel |
+|-------|--------|------|
+| next | 16.1.6 | App router, SSR |
+| sanity | 4.22 | CMS + client |
+| framer-motion | 12.29 | React animácie |
+| @react-three/fiber | 9.5 | 3D rendering |
+| tailwindcss | 4 | Styling |
+| lucide-react | 0.563 | Ikony |
+| gsap | 3.14 | Pokročilé animácie |
+
+**Package manager**: npm (nie yarn/pnpm/bun)
+
+## Kritické Súbory
+
+| Súbor | Účel | Kľúčové |
+|-------|------|---------|
+| [app/lib/sanity.client.ts](app/lib/sanity.client.ts) | Frontend Sanity | `useCdn: false` |
+| [app/lib/mixes.ts](app/lib/mixes.ts) | GROQ queries | `getMixBySlug()` |
+| [app/mixy/[slug]/page.tsx](app/mixy/[slug]/page.tsx) | Príklad dynamickej routy | Async params pattern |
+| [lib/constants.ts](lib/constants.ts) | **VŠETKY konštanty** | Durations, spacing |
+| [lib/animationVariants.ts](lib/animationVariants.ts) | Framer Motion | Reusable variants |
+| [contexts/AudioContext.tsx](contexts/AudioContext.tsx) | Globálny audio stav | `setCurrentTrack()` |
+| [hooks/useAudioPlayer.ts](hooks/useAudioPlayer.ts) | Audio wrapper | HTML5 API |
+| [components/GlobalAudioPlayer.tsx](components/GlobalAudioPlayer.tsx) | Persistent player | Audio element |
+| [app/layout.tsx](app/layout.tsx) | Root layout | Providers, player |
+
+## Výkon & Best Practices
+- **Images**: Next.js `<Image>` so Sanity CDN
+- **Code splitting**: `lazy()` + `Suspense`
+- **Client vs Server**: Server default (rýchlejšie)
+- **Effects**: Max jeden na stránku, `fixed` positioning
+- **Animations**: Polling 100ms - optimálny refresh
 
 ---
-*For detailed WindSurf rules (communication, architecture), see `.windsurf/rules/global-rules.md`*
+
+## Vrstvenie Komplexnosti
+
+### 🟢 Jednoduchá (30min)
+- Text do Sanity
+- Tailwind zmeny
+- Konštanty v [lib/constants.ts](lib/constants.ts)
+- UI komponenty
+
+### 🟡 Stredná (2h)
+- Nový obsah typ v Sanity
+- Audio track s Tracklist
+- Nová animácia (z variantov)
+
+### 🔴 Zložitá (1 deň+)
+- Nový player typ
+- 3D efekty s Three.js
+- Zmeny v AudioContext
+
+---
+*Pre detailné pravidlá, pozri [.windsurf/rules/global-rules.md](.windsurf/rules/global-rules.md)*

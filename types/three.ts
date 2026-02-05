@@ -6,17 +6,22 @@ export interface ThreeContext {
   renderer: THREE.WebGLRenderer
   scene: THREE.Scene
   camera: THREE.Camera
-  composer?: any // Postprocessing composer
+  composer?: unknown
   material?: THREE.Material | THREE.ShaderMaterial
   quad?: THREE.Mesh
   raf?: number
   resizeObserver?: ResizeObserver
-  liquidEffect?: any
-  touch?: any
-  uniforms?: any // Shader uniforms
-  clickIx?: number // Click index
+  liquidEffect?: {
+    uniforms: Record<string, { value: unknown }>
+  }
+  touch?: {
+    x: number
+    y: number
+  }
+  uniforms?: Record<string, { value: unknown }>
+  clickIx?: number
   clock?: THREE.Clock
-  timeOffset?: number // Time offset property
+  timeOffset?: number
 }
 
 export interface PixelBlastProps {

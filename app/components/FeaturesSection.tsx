@@ -38,7 +38,7 @@ const FeaturesSection = memo(function FeaturesSection() {
             transition={{ delay: DELAYS.CONTENT_DELAY, duration: ANIMATION_DURATIONS.FAST }}
             title="Coming Soon - Pripravujeme pre teba!"
             role="listitem"
-            aria-disabled="true"
+            aria-label="DJ Sets - pripravuje sa"
           >
             {/* Disabled overlay */}
             <div className="absolute inset-0 bg-black/30 z-20" aria-hidden="true" />
@@ -67,7 +67,7 @@ const FeaturesSection = memo(function FeaturesSection() {
             transition={{ delay: 0.2, duration: 0.6 }}
             title="Coming Soon - Pripravujeme pre teba!"
             role="listitem"
-            aria-disabled="true"
+            aria-label="Production - pripravuje sa"
           >
             {/* Disabled overlay */}
             <div className="absolute inset-0 bg-black/30 z-20" aria-hidden="true" />

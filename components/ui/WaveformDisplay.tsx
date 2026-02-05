@@ -1,6 +1,5 @@
 'use client'
 import { motion } from 'framer-motion'
-import { ANIMATION_DURATIONS } from '@/lib/constants'
 import { useMemo } from 'react'
 
 interface WaveformDisplayProps {

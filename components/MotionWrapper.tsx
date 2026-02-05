@@ -1,17 +1,18 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, Variants, Transition, Variant } from 'framer-motion'
+import { CSSProperties } from 'react'
 
 interface MotionWrapperProps {
   children?: React.ReactNode
   className?: string
-  initial?: any
-  animate?: any
-  transition?: any
-  variants?: any
-  whileInView?: any
-  viewport?: any
-  style?: any
+  initial?: boolean | Variant
+  animate?: Variant
+  transition?: Transition
+  variants?: Variants
+  whileInView?: Variant
+  viewport?: { once?: boolean; amount?: number }
+  style?: CSSProperties
 }
 
 export function MotionDiv({ 
@@ -48,7 +49,7 @@ export function MotionH1({
   animate, 
   transition,
   style 
-}: MotionWrapperProps & { style?: any }) {
+}: MotionWrapperProps) {
   return (
     <motion.h1
       className={className}

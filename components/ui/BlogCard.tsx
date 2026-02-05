@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import imageUrlBuilder from '@sanity/image-url'
 import { theme } from '@/lib/theme'
 import BaseCard from '@/components/ui/BaseCard'
-import { createBlogCardVariants, imageHoverVariants, createTextHoverVariants } from '@/lib/animationVariants'
+import { imageHoverVariants, createTextHoverVariants } from '@/lib/animationVariants'
 import { BlogCardProps, SanityImageSource } from '@/types/components'
 
 export default function BlogCard({ post, index, sanityClient }: BlogCardProps) {
@@ -13,7 +13,6 @@ export default function BlogCard({ post, index, sanityClient }: BlogCardProps) {
     return builder.image(source)
   }
 
-  const cardVariants = createBlogCardVariants(index)
   const textVariants = createTextHoverVariants(theme.colors.primary[600], theme.colors.glow.red)
 
   return (

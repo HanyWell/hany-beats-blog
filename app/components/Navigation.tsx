@@ -1,11 +1,14 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
-import PillNav from '@/components/ui/PillNav'
+import { usePathname } from 'next/navigation'
+import { Home, BookOpen, Music, Heart, User, Bell } from 'lucide-react'
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const pathname = usePathname()
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen)
@@ -16,43 +19,75 @@ export default function Navigation() {
   }
 
   const navItems = [
-    { label: 'Home', href: '/' },
-    { label: 'Blog', href: '/blog' },
-    { label: 'Mixy', href: '/mixy' },
-    { label: 'Playlisty', href: '/playlisty' },
+    { label: 'Dashboard', href: '/', icon: Home },
+    { label: 'Blog', href: '/blog', icon: BookOpen },
+    { label: 'Mixy', href: '/mixy', icon: Music },
+    { label: 'Playlisty', href: '/playlisty', icon: Heart },
   ]
+  
   return (
-    <nav className="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-red-900/60">
-      {/* horný pruh, drží sa hore pri scrollovaní */}
-      <div className="max-w-7xl mx-auto px-6 md:px-8 py-4">
-        <div className="flex items-center justify-between">
+    <nav className="sticky top-0 z-50 bg-[#0a0e27]/95 backdrop-blur-xl border-b border-white/5">
+      {/* Desktop Dashboard Style Navigation */}
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex items-center justify-between h-16">
           
-          {/* Logo vľavo */}
+          {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group" onClick={closeMobileMenu}>
-            {/* DJ ikona – pri hover sa zväčší */}
-            <span className="text-3xl group-hover:scale-110 transition-transform duration-300">
-              🎧
-            </span>
-            {/* názov Hany Beats s červeným gradientom, ako na landing page */}
-            <span className="text-2xl font-bold bg-gradient-to-r from-red-500 via-red-600 to-red-700 bg-clip-text text-transparent drop-shadow-[0_0_12px_rgba(248,113,113,0.6)]">
-              Hany Beats
-            </span>
+            <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-red-700 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+              <Music className="w-6 h-6 text-white" />
+            </div>
           </Link>
 
-          {/* Desktop menu - PillNav */}
-          <div className="hidden md:flex items-center gap-8">
-            <PillNav items={navItems} className="mr-4" />
+          {/* Desktop Navigation Tabs */}
+          <div className="hidden md:flex items-center gap-1">
+            {navItems.map((item) => {
+              const Icon = item.icon
+              const isActive = pathname === item.href
+              
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`
+                    relative px-6 py-3 flex items-center gap-2 font-medium transition-all duration-200
+                    ${isActive 
+                      ? 'text-blue-400' 
+                      : 'text-gray-400 hover:text-white'
+                    }
+                  `}
+                  onClick={closeMobileMenu}
+                >
+                  <Icon className="w-4 h-4" />
+                  <span>{item.label}</span>
+                  {/* Bottom border indicator */}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500" />
+                  )}
+                </Link>
+              )
+            })}
+          </div>
 
-            {/* hlavné červené tlačidlo – rovnaký vibe ako ostatné CTA */}
-            <Link
-              href="/about"
-              className="px-6 py-2 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white rounded-full font-semibold transition-all duration-300 shadow-[0_0_25px_rgba(220,38,38,0.5)] hover:shadow-[0_0_40px_rgba(220,38,38,0.8)] hover:scale-105"
-            >
-              About
+          {/* Right Side - Notifications + Avatar */}
+          <div className="hidden md:flex items-center gap-4">
+            {/* Notifications */}
+            <button className="relative p-2 text-gray-400 hover:text-white transition-colors">
+              <Bell className="w-5 h-5" />
+              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full" />
+            </button>
+
+            {/* Avatar */}
+            <Link href="/about" className="relative w-9 h-9 rounded-full overflow-hidden border-2 border-gray-700 hover:border-red-500 transition-colors">
+              <Image
+                src="/img/ja.jpg"
+                alt="Profile"
+                fill
+                className="object-cover"
+              />
             </Link>
           </div>
 
-          {/* Hamburger menu tlačidlo - viditeľné len na mobiloch */}
+          {/* Mobile Hamburger */}
           <button
             onClick={toggleMobileMenu}
             className="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1 group"
@@ -65,52 +100,43 @@ export default function Navigation() {
         </div>
       </div>
 
-      {/* Mobilné menu - slide down panel */}
+      {/* Mobile Menu */}
       <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
         isMobileMenuOpen ? 'max-h-96' : 'max-h-0'
       }`}>
-        <div className="bg-black/95 backdrop-blur-md border-t border-red-900/60">
-          <div className="px-6 py-4 space-y-3">
-            {/* Mobilné menu položky */}
-            <Link
-              href="/"
-              className="block text-gray-300 hover:text-red-400 font-medium transition-colors duration-200 py-2"
-              onClick={closeMobileMenu}
-            >
-              Home
-            </Link>
+        <div className="bg-[#0a0e27] border-t border-white/5">
+          <div className="px-6 py-4 space-y-2">
+            {navItems.map((item) => {
+              const Icon = item.icon
+              const isActive = pathname === item.href
+              
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`
+                    flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors duration-200
+                    ${isActive 
+                      ? 'bg-blue-500/10 text-blue-400' 
+                      : 'text-gray-400 hover:bg-white/5 hover:text-white'
+                    }
+                  `}
+                  onClick={closeMobileMenu}
+                >
+                  <Icon className="w-5 h-5" />
+                  <span>{item.label}</span>
+                </Link>
+              )
+            })}
 
-            <Link
-              href="/blog"
-              className="block text-gray-300 hover:text-red-400 font-medium transition-colors duration-200 py-2"
-              onClick={closeMobileMenu}
-            >
-              Blog
-            </Link>
-
-            <Link
-              href="/mixy"
-              className="block text-gray-300 hover:text-red-400 font-medium transition-colors duration-200 py-2"
-              onClick={closeMobileMenu}
-            >
-              Mixy
-            </Link>
-
-            <Link
-              href="/playlisty"
-              className="block text-gray-300 hover:text-red-400 font-medium transition-colors duration-200 py-2"
-              onClick={closeMobileMenu}
-            >
-              Playlisty
-            </Link>
-
-            {/* About tlačidlo - plná šírka na mobiloch */}
+            {/* Profile Link */}
             <Link
               href="/about"
-              className="block w-full text-center px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white rounded-full font-semibold transition-all duration-300 shadow-[0_0_25px_rgba(220,38,38,0.5)] hover:shadow-[0_0_40px_rgba(220,38,38,0.8)] hover:scale-105 mt-4"
+              className="flex items-center gap-3 px-4 py-3 rounded-lg font-medium text-gray-400 hover:bg-white/5 hover:text-white transition-colors duration-200 mt-4 border-t border-white/5"
               onClick={closeMobileMenu}
             >
-              About
+              <User className="w-5 h-5" />
+              <span>Profile</span>
             </Link>
           </div>
         </div>

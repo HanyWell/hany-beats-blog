@@ -1,7 +1,6 @@
 'use client'
 
-import { motion, MotionProps } from 'framer-motion'
-import React from 'react'
+import { MotionProps } from 'framer-motion'
 
 // Check if user prefers reduced motion
 const shouldReduceMotion = (): boolean => {

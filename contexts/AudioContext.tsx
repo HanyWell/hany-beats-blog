@@ -29,7 +29,6 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   const [isPlaying, setIsPlaying] = useState(false)
   const currentTimeRef = useRef(0)
   const durationRef = useRef(0)
-  const [, forceUpdate] = useState({})
   const audioControlsRef = useRef<{ seek: (time: number) => void; togglePlay: () => void } | null>(null)
 
   const handleSetTrack = (track: Track) => {

@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import { FaFacebook, FaSoundcloud, FaInstagram, FaEnvelope, FaYoutube } from 'react-icons/fa'
-import Link from 'next/link'
 import { socials } from '@/config/socials'
 
 export default function AboutPage() {

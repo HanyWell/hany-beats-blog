@@ -13,7 +13,7 @@ export interface SanityPreviewSelect {
   artist?: string
   startTime?: string
   publishedAt?: string
-  trackCount?: any[]
+  trackCount?: Track[]
 }
 
 export interface SanityPrepareOptions {
@@ -21,7 +21,7 @@ export interface SanityPrepareOptions {
   artist?: string
   startTime?: string
   publishedAt?: string
-  trackCount?: any[]
+  trackCount?: Track[]
 }
 
 export interface Post {

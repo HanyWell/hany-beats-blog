@@ -1,14 +1,12 @@
 'use client'
 
-import { useState, useCallback, useRef } from 'react'
-import { motion } from 'framer-motion'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { useDevicePerformance } from '@/hooks/useDevicePerformance'
 import { useTouchNavigation } from '@/hooks/useTouchNavigation'
 import { useWordAnimation } from '@/hooks/useWordAnimation'
 import WordDisplay from '@/components/ui/WordDisplay'
-import { TrueFocusProps, MobileProps } from '@/types/components'
-import { BREAKPOINTS, VISUAL_VALUES, ANIMATION_DURATIONS, TOUCH_VALUES } from '@/lib/constants'
+import { TrueFocusProps } from '@/types/components'
+import { BREAKPOINTS, VISUAL_VALUES, ANIMATION_DURATIONS } from '@/lib/constants'
 import '../TrueFocus.css'
 
 const TrueFocus: React.FC<TrueFocusProps> = ({
@@ -28,8 +26,9 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
 }) => {
   const words = sentence.split(' ')
   
-  // Responsívna detekcia
-  const isMobile = responsive ? useMediaQuery(`(max-width: ${BREAKPOINTS.MOBILE}px)`) : false
+  // Responsívna detekcia - hooks musia byť vždy volané
+  const mediaQueryResult = useMediaQuery(`(max-width: ${BREAKPOINTS.MOBILE}px)`)
+  const isMobile = responsive ? mediaQueryResult : false
   const devicePerformance = useDevicePerformance()
   
   // Adaptívne nastavenia
