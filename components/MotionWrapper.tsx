@@ -1,16 +1,17 @@
 'use client'
 
-import { motion, Variants, Transition, Variant } from 'framer-motion'
+import { motion, Variants, Transition } from 'framer-motion'
 import { CSSProperties } from 'react'
+import type { VariantLabels, TargetAndTransition } from 'framer-motion'
 
 interface MotionWrapperProps {
   children?: React.ReactNode
   className?: string
-  initial?: boolean | Variant
-  animate?: Variant
+  initial?: boolean | VariantLabels | TargetAndTransition
+  animate?: VariantLabels | TargetAndTransition
   transition?: Transition
   variants?: Variants
-  whileInView?: Variant
+  whileInView?: VariantLabels | TargetAndTransition
   viewport?: { once?: boolean; amount?: number }
   style?: CSSProperties
 }

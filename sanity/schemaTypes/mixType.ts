@@ -1,5 +1,5 @@
 // sanity/schemaTypes/mixType.ts
-import { type SchemaTypeDefinition } from 'sanity'
+import { type SchemaTypeDefinition, type Rule as RuleType } from 'sanity'
 
 export const mixType: SchemaTypeDefinition = {
   name: 'mix',
@@ -10,7 +10,7 @@ export const mixType: SchemaTypeDefinition = {
       name: 'title',
       type: 'string',
       title: 'Názov mixu',
-      validation: Rule => Rule.required()
+      validation: (Rule: RuleType) => Rule.required()
     },
     {
       name: 'slug',
@@ -20,7 +20,7 @@ export const mixType: SchemaTypeDefinition = {
         source: 'title',
         maxLength: 96
       },
-      validation: Rule => Rule.required()
+      validation: (Rule: RuleType) => Rule.required()
     },
     {
       name: 'audioFile',
@@ -29,7 +29,7 @@ export const mixType: SchemaTypeDefinition = {
       options: {
         accept: 'audio/*'
       },
-      validation: Rule => Rule.required()
+      validation: (Rule: RuleType) => Rule.required()
     },
     {
       name: 'publishedAt',
@@ -49,13 +49,13 @@ export const mixType: SchemaTypeDefinition = {
               name: 'artist',
               type: 'string',
               title: 'Interpret',
-              validation: Rule => Rule.required()
+              validation: (Rule: RuleType) => Rule.required()
             },
             {
               name: 'title',
               type: 'string',
               title: 'Názov tracku',
-              validation: Rule => Rule.required()
+              validation: (Rule: RuleType) => Rule.required()
             },
             {
               name: 'label',
@@ -67,7 +67,7 @@ export const mixType: SchemaTypeDefinition = {
               type: 'string',
               title: 'Čas začiatku (MM:SS)',
               description: 'Formát: 05:30',
-              validation: Rule => Rule.required().regex(/^\d{1,2}:\d{2}$/, 'Musí byť vo formáte MM:SS')
+              validation: (Rule: RuleType) => Rule.required().regex(/^\d{1,2}:\d{2}$/, 'Musí byť vo formáte MM:SS')
             },
             {
               name: 'spotifyUrl',
@@ -91,7 +91,7 @@ export const mixType: SchemaTypeDefinition = {
               artist: 'artist',
               startTime: 'startTime'
             },
-            prepare({ title, artist, startTime }) {
+            prepare({ title, artist, startTime }: { title?: string; artist?: string; startTime?: string }) {
               return {
                 title: `${artist} - ${title}`,
                 subtitle: `Začiatok: ${startTime}`
@@ -115,10 +115,11 @@ export const mixType: SchemaTypeDefinition = {
       publishedAt: 'publishedAt',
       trackCount: 'tracklist'
     },
-    prepare({ title, publishedAt, trackCount }) {
+    prepare({ title, publishedAt, trackCount }: { title?: string; publishedAt?: string; trackCount?: unknown[] }) {
+      const dateStr = publishedAt ? new Date(publishedAt).toLocaleDateString('sk') : 'bez dátumu'
       return {
         title,
-        subtitle: `${trackCount?.length || 0} trackov • ${new Date(publishedAt).toLocaleDateString('sk')}`
+        subtitle: `${trackCount?.length || 0} trackov • ${dateStr}`
       }
     }
   }

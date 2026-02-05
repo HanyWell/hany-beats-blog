@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import Link from 'next/link'
 import Image from 'next/image'
@@ -20,10 +20,10 @@ const HeroSection = memo(function HeroSection() {
   const [activeModal, setActiveModal] = useState<'dj' | 'dev' | null>(null)
   
   const djTimeline = [
-    { year: '2010-2013', title: 'Začiatky', description: 'Learning curve, prvé mixy' },
+    { year: '2010-2013', title: 'ZaÄŤiatky', description: 'Learning curve, prvĂ© mixy' },
     { year: '2013-2018', title: 'Peak Era', description: 'Active mixing, events, vinyl sets' },
     { year: '2018-2021', title: 'Pauza', description: '2-3 roky break time', isPause: true },
-    { year: '2021-2026', title: 'Návrat', description: 'Hany Beats born, 100+ mixov' },
+    { year: '2021-2026', title: 'NĂˇvrat', description: 'Hany Beats born, 100+ mixov' },
   ]
 
   return (
@@ -57,7 +57,7 @@ const HeroSection = memo(function HeroSection() {
         />
 
         {/* OLD Desktop: Side by Side - DISABLED */}
-        <div className="hidden">
+        <div className="hidden" style={{display: 'none'}}>
           
           {/* LEFT SIDE - DJ PERSONA */}
           <ExpandablePersona symbolType="uchiha" side="left">
@@ -89,41 +89,41 @@ const HeroSection = memo(function HeroSection() {
 
                       {/* Name & Title */}
                       <div className="text-center mb-4">
-                        <h2 className="text-2xl font-black text-white mb-1">🎧 Hany Well</h2>
-                        <p className="text-red-400 font-semibold text-sm">DJ • Producer • Vinyl Lover</p>
+                        <h2 className="text-2xl font-black text-white mb-1">đźŽ§ Hany Well</h2>
+                        <p className="text-red-400 font-semibold text-sm">DJ â€˘ Producer â€˘ Vinyl Lover</p>
                       </div>
 
                       {/* Bio */}
                       <p className="text-gray-400 text-xs leading-relaxed mb-4 text-center">
-                        Drum & Bass je môj život. Od roku 2010 v scéne, 
-                        vraciam sa s čerstvou energiou a stovkami mixov.
+                        Drum & Bass je mĂ´j Ĺľivot. Od roku 2010 v scĂ©ne, 
+                        vraciam sa s ÄŤerstvou energiou a stovkami mixov.
                       </p>
 
                       {/* Quick Facts - PixelCards */}
                       <div className="grid grid-cols-2 gap-3 mb-4 flex-grow">
-                        <ElectricBorder color="#dc2626" speed={0.3} chaos={0.13} thickness={2} style={{ borderRadius: 12 }}>
+                        <ElectricBorder color="#dc2626" speed={0.3} chaos={0.13}  style={{ borderRadius: 12 }}>
                           <div className="px-3 py-3 bg-black/40 text-center h-full flex flex-col items-center justify-center">
-                            <div className="text-2xl mb-1">💿</div>
+                            <div className="text-2xl mb-1">đź’ż</div>
                             <div className="text-xs text-gray-300 font-medium">Vinyl DJ</div>
                           </div>
                         </ElectricBorder>
-                        <ElectricBorder color="#dc2626" speed={0.3} chaos={0.13} thickness={2} style={{ borderRadius: 12 }}>
+                        <ElectricBorder color="#dc2626" speed={0.3} chaos={0.13}  style={{ borderRadius: 12 }}>
                           <div className="px-3 py-3 bg-black/40 text-center h-full flex flex-col items-center justify-center">
-                            <div className="text-2xl mb-1">🎼</div>
+                            <div className="text-2xl mb-1">đźŽĽ</div>
                             <div className="text-xs text-gray-300 font-medium">Stovky</div>
                             <div className="text-xs text-gray-400">playlistov</div>
                           </div>
                         </ElectricBorder>
-                        <ElectricBorder color="#dc2626" speed={0.3} chaos={0.13} thickness={2} style={{ borderRadius: 12 }}>
+                        <ElectricBorder color="#dc2626" speed={0.3} chaos={0.13}  style={{ borderRadius: 12 }}>
                           <div className="px-3 py-3 bg-black/40 text-center h-full flex flex-col items-center justify-center">
-                            <div className="text-2xl mb-1">🎧</div>
+                            <div className="text-2xl mb-1">đźŽ§</div>
                             <div className="text-xs text-gray-300 font-medium">10K+</div>
                             <div className="text-xs text-gray-400">Plays</div>
                           </div>
                         </ElectricBorder>
-                        <ElectricBorder color="#dc2626" speed={0.3} chaos={0.13} thickness={2} style={{ borderRadius: 12 }}>
+                        <ElectricBorder color="#dc2626" speed={0.3} chaos={0.13}  style={{ borderRadius: 12 }}>
                           <div className="px-3 py-3 bg-black/40 text-center h-full flex flex-col items-center justify-center">
-                            <div className="text-2xl mb-1">🔥</div>
+                            <div className="text-2xl mb-1">đź”Ą</div>
                             <div className="text-xs text-gray-300 font-medium">100+</div>
                             <div className="text-xs text-gray-400">Mixov</div>
                           </div>
@@ -171,41 +171,41 @@ const HeroSection = memo(function HeroSection() {
 
                       {/* Name & Title */}
                       <div className="text-center mb-4">
-                        <h2 className="text-2xl font-black text-white mb-1">🎧 Hany Well</h2>
-                        <p className="text-red-400 font-semibold text-sm">DJ • Producer • Vinyl Lover</p>
+                        <h2 className="text-2xl font-black text-white mb-1">đźŽ§ Hany Well</h2>
+                        <p className="text-red-400 font-semibold text-sm">DJ â€˘ Producer â€˘ Vinyl Lover</p>
                       </div>
 
                       {/* Bio */}
                       <p className="text-gray-400 text-xs leading-relaxed mb-4 text-center">
-                        Drum & Bass je môj život. Od roku 2010 v scéne, 
-                        vraciam sa s čerstvou energiou a stovkami mixov.
+                        Drum & Bass je mĂ´j Ĺľivot. Od roku 2010 v scĂ©ne, 
+                        vraciam sa s ÄŤerstvou energiou a stovkami mixov.
                       </p>
 
                       {/* Quick Facts - PixelCards */}
                       <div className="grid grid-cols-2 gap-3 mb-4 flex-grow">
-                        <ElectricBorder color="#dc2626" speed={0.3} chaos={0.13} thickness={2} style={{ borderRadius: 12 }}>
+                        <ElectricBorder color="#dc2626" speed={0.3} chaos={0.13}  style={{ borderRadius: 12 }}>
                           <div className="px-3 py-3 bg-black/40 text-center h-full flex flex-col items-center justify-center">
-                            <div className="text-2xl mb-1">💿</div>
+                            <div className="text-2xl mb-1">đź’ż</div>
                             <div className="text-xs text-gray-300 font-medium">Vinyl DJ</div>
                           </div>
                         </ElectricBorder>
-                        <ElectricBorder color="#dc2626" speed={0.3} chaos={0.13} thickness={2} style={{ borderRadius: 12 }}>
+                        <ElectricBorder color="#dc2626" speed={0.3} chaos={0.13}  style={{ borderRadius: 12 }}>
                           <div className="px-3 py-3 bg-black/40 text-center h-full flex flex-col items-center justify-center">
-                            <div className="text-2xl mb-1">🎼</div>
+                            <div className="text-2xl mb-1">đźŽĽ</div>
                             <div className="text-xs text-gray-300 font-medium">Stovky</div>
                             <div className="text-xs text-gray-400">playlistov</div>
                           </div>
                         </ElectricBorder>
-                        <ElectricBorder color="#dc2626" speed={0.3} chaos={0.13} thickness={2} style={{ borderRadius: 12 }}>
+                        <ElectricBorder color="#dc2626" speed={0.3} chaos={0.13}  style={{ borderRadius: 12 }}>
                           <div className="px-3 py-3 bg-black/40 text-center h-full flex flex-col items-center justify-center">
-                            <div className="text-2xl mb-1">🎧</div>
+                            <div className="text-2xl mb-1">đźŽ§</div>
                             <div className="text-xs text-gray-300 font-medium">10K+</div>
                             <div className="text-xs text-gray-400">Plays</div>
                           </div>
                         </ElectricBorder>
-                        <ElectricBorder color="#dc2626" speed={0.3} chaos={0.13} thickness={2} style={{ borderRadius: 12 }}>
+                        <ElectricBorder color="#dc2626" speed={0.3} chaos={0.13}  style={{ borderRadius: 12 }}>
                           <div className="px-3 py-3 bg-black/40 text-center h-full flex flex-col items-center justify-center">
-                            <div className="text-2xl mb-1">🔥</div>
+                            <div className="text-2xl mb-1">đź”Ą</div>
                             <div className="text-xs text-gray-300 font-medium">100+</div>
                             <div className="text-xs text-gray-400">Mixov</div>
                           </div>
@@ -238,7 +238,7 @@ const HeroSection = memo(function HeroSection() {
               backContent={
                 <div className="bg-gradient-to-br from-black/80 via-red-950/20 to-black/80 backdrop-blur-md border border-red-500/20 rounded-2xl p-6 h-full flex flex-col">
                   <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                    <span>📅</span>
+                    <span>đź“…</span>
                     <span>Timeline</span>
                   </h3>
                   
@@ -248,8 +248,8 @@ const HeroSection = memo(function HeroSection() {
                   
                   <div className="mt-auto pt-3 border-t border-white/5">
                     <h4 className="text-xs font-semibold text-gray-400 mb-2 flex items-center gap-1">
-                      <span>🎵</span>
-                      <span>Žánre:</span>
+                      <span>đźŽµ</span>
+                      <span>Ĺ˝Ăˇnre:</span>
                     </h4>
                     <div className="flex flex-wrap gap-1.5">
                       {['Liquid', 'Deep', 'Neurofunk', 'HARD', 'UpTempo'].map(genre => (
@@ -258,7 +258,7 @@ const HeroSection = memo(function HeroSection() {
                         </span>
                       ))}
                     </div>
-                    <p className="text-xs text-gray-500 mt-2">📍 Bratislava, SK</p>
+                    <p className="text-xs text-gray-500 mt-2">đź“Ť Bratislava, SK</p>
                   </div>
                 </div>
               }
@@ -295,14 +295,14 @@ const HeroSection = memo(function HeroSection() {
 
                       {/* Name & Title */}
                       <div className="text-center mb-4">
-                        <h2 className="text-2xl font-black text-white mb-1">💻 Some Mahony</h2>
+                        <h2 className="text-2xl font-black text-white mb-1">đź’» Some Mahony</h2>
                         <p className="text-orange-400 font-semibold text-sm">Full-Stack Developer</p>
                       </div>
 
                       {/* Bio */}
                       <p className="text-gray-400 text-xs leading-relaxed mb-4 text-center max-w-xs">
-                        Pretváranie nápadov na živé, interaktívne weby. 
-                        Špecializácia na moderné frameworky a UX dizajn.
+                        PretvĂˇranie nĂˇpadov na ĹľivĂ©, interaktĂ­vne weby. 
+                        Ĺ pecializĂˇcia na modernĂ© frameworky a UX dizajn.
                       </p>
 
                       {/* CTA Buttons */}
@@ -346,14 +346,14 @@ const HeroSection = memo(function HeroSection() {
 
                       {/* Name & Title */}
                       <div className="text-center mb-4">
-                        <h2 className="text-2xl font-black text-white mb-1">💻 Some Mahony</h2>
+                        <h2 className="text-2xl font-black text-white mb-1">đź’» Some Mahony</h2>
                         <p className="text-orange-400 font-semibold text-sm">Full-Stack Developer</p>
                       </div>
 
                       {/* Bio */}
                       <p className="text-gray-400 text-xs leading-relaxed mb-4 text-center max-w-xs">
-                        Pretváranie nápadov na živé, interaktívne weby. 
-                        Špecializácia na moderné frameworky a UX dizajn.
+                        PretvĂˇranie nĂˇpadov na ĹľivĂ©, interaktĂ­vne weby. 
+                        Ĺ pecializĂˇcia na modernĂ© frameworky a UX dizajn.
                       </p>
 
                       {/* CTA Buttons */}
@@ -382,34 +382,34 @@ const HeroSection = memo(function HeroSection() {
               backContent={
                 <div className="bg-gradient-to-br from-black/80 via-orange-950/20 to-black/80 backdrop-blur-md border border-orange-500/20 rounded-2xl p-6 h-full flex flex-col">
                   <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                    <span>💡</span>
-                    <span>Filozofia kódu</span>
+                    <span>đź’ˇ</span>
+                    <span>Filozofia kĂłdu</span>
                   </h3>
                   
                   <p className="text-gray-400 text-xs leading-relaxed mb-3">
-                    <span className="text-orange-400 font-semibold">"Každý pixel má zmysel."</span><br/>
-                    Programovanie nie je len o funkčnosti - je to umenie vytvárania 
-                    bezproblémových skúseností, kde design stretáva výkon.
+                    <span className="text-orange-400 font-semibold">"KaĹľdĂ˝ pixel mĂˇ zmysel."</span><br/>
+                    Programovanie nie je len o funkÄŤnosti - je to umenie vytvĂˇrania 
+                    bezproblĂ©movĂ˝ch skĂşsenostĂ­, kde design stretĂˇva vĂ˝kon.
                   </p>
 
                   <div className="space-y-2.5 flex-grow">
                     <div className="bg-white/5 backdrop-blur-sm rounded-lg p-2.5 border border-white/5">
                       <h4 className="text-xs font-semibold text-orange-400 mb-1.5 flex items-center gap-1">
-                        <span>🎯</span>
-                        <span>Princípy</span>
+                        <span>đźŽŻ</span>
+                        <span>PrincĂ­py</span>
                       </h4>
                       <ul className="text-xs text-gray-400 space-y-0.5">
-                        <li>• Clean Code & Best Practices</li>
-                        <li>• Performance First Approach</li>
-                        <li>• Responsive & Accessible Design</li>
-                        <li>• Continuous Learning & Innovation</li>
+                        <li>â€˘ Clean Code & Best Practices</li>
+                        <li>â€˘ Performance First Approach</li>
+                        <li>â€˘ Responsive & Accessible Design</li>
+                        <li>â€˘ Continuous Learning & Innovation</li>
                       </ul>
                     </div>
 
                     <div className="bg-white/5 backdrop-blur-sm rounded-lg p-2.5 border border-white/5">
                       <h4 className="text-xs font-semibold text-orange-400 mb-1.5 flex items-center gap-1">
-                        <span>🚀</span>
-                        <span>Aktuálny Focus</span>
+                        <span>đźš€</span>
+                        <span>AktuĂˇlny Focus</span>
                       </h4>
                       <div className="flex flex-wrap gap-1.5">
                         {['Next.js 16', 'Sanity CMS', 'Framer Motion', 'Three.js'].map(tech => (
@@ -423,7 +423,7 @@ const HeroSection = memo(function HeroSection() {
 
                   <div className="mt-auto pt-3 border-t border-white/5">
                     <p className="text-xs text-gray-500 text-center italic">
-                      "Code is poetry written in logic" 🧙‍♂️
+                      "Code is poetry written in logic" đź§™â€Ťâ™‚ď¸Ź
                     </p>
                   </div>
                 </div>
@@ -445,8 +445,8 @@ const HeroSection = memo(function HeroSection() {
               </div>
               
               <div className="text-center mb-4">
-                <h2 className="text-2xl font-black text-white mb-1">🎧 Hany Well</h2>
-                <p className="text-red-400 text-sm font-semibold">DJ • Producer • Vinyl Lover</p>
+                <h2 className="text-2xl font-black text-white mb-1">đźŽ§ Hany Well</h2>
+                <p className="text-red-400 text-sm font-semibold">DJ â€˘ Producer â€˘ Vinyl Lover</p>
               </div>
 
               <div className="grid grid-cols-3 gap-2 mb-4">
@@ -484,7 +484,7 @@ const HeroSection = memo(function HeroSection() {
               </div>
               
               <div className="text-center mb-4">
-                <h2 className="text-2xl font-black text-white mb-1">💻 Some Mahony</h2>
+                <h2 className="text-2xl font-black text-white mb-1">đź’» Some Mahony</h2>
                 <p className="text-cyan-400 text-sm font-semibold">Front-End Developer</p>
               </div>
 
@@ -512,3 +512,4 @@ const HeroSection = memo(function HeroSection() {
 })
 
 export default HeroSection
+

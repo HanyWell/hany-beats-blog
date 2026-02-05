@@ -1,7 +1,7 @@
 'use client'
 import { lazy, Suspense } from 'react'
 import HeroSection from './components/HeroSection'
-import PixelBlast from '@/components/PixelBlast'
+import LightPillar from '@/components/LightPillar'
 const FeaturesSection = lazy(() => import('./components/FeaturesSection'))
 const GenreSection = lazy(() => import('./components/GenreSection'))
 const ContactSection = lazy(() => import('./components/ContactSection'))
@@ -30,23 +30,19 @@ export default function HomePage() {
   return (
     <>
       <SkipNavigation />
-      {/* PixelBlast background - outside overflow container */}
-      <div className="fixed inset-0 -z-10">
-        <PixelBlast
-          variant="triangle"
-          pixelSize={3}
-          color="#E02020"
-          patternScale={2}
-          patternDensity={1}
-          enableRipples
-          rippleSpeed={0.45}
-          rippleThickness={0.15}
-          rippleIntensityScale={1}
-          speed={0.6}
-          transparent
-          edgeFade={0.5}
-          className=""
-          style={{}}
+      {/* LightPillar background - outside overflow container */}
+      <div className="fixed inset-0 -z-10" style={{ width: '100vw', height: '100vh' }}>
+        <LightPillar
+          topColor="#dc2626"
+          bottomColor="#0891b2"
+          intensity={1.9}
+          rotationSpeed={0.7}
+          interactive={false}
+          glowAmount={0.001}
+          pillarWidth={2}
+          pillarHeight={0.75}
+          noiseIntensity={0}
+          pillarRotation={65}
         />
       </div>
       

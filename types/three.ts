@@ -1,22 +1,28 @@
 // types/three.ts
 import * as THREE from 'three'
+import { EffectComposer } from 'postprocessing'
 
 // Základné typy pre Three.js komponenty (hybridný prístup)
 export interface ThreeContext {
   renderer: THREE.WebGLRenderer
   scene: THREE.Scene
   camera: THREE.Camera
-  composer?: unknown
+  composer?: EffectComposer
   material?: THREE.Material | THREE.ShaderMaterial
   quad?: THREE.Mesh
   raf?: number
   resizeObserver?: ResizeObserver
   liquidEffect?: {
-    uniforms: Record<string, { value: unknown }>
+    uniforms: Map<string, { value: unknown }>
+    value?: number
   }
   touch?: {
-    x: number
-    y: number
+    canvas: HTMLCanvasElement
+    texture: THREE.Texture
+    addTouch: (norm: { x: number; y: number }) => void
+    update: () => void
+    radiusScale: number
+    size: number
   }
   uniforms?: Record<string, { value: unknown }>
   clickIx?: number

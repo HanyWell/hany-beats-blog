@@ -218,14 +218,15 @@ export const cssVars = {
 // Helper funkcie pre použitie v komponentoch
 export const getColor = (path: string): string | null => {
   const keys = path.split('.')
-  let value: Record<string, unknown> = theme.colors as Record<string, unknown>
+  let value: unknown = theme.colors as Record<string, unknown>
   
   for (const key of keys) {
-    value = value[key] as Record<string, unknown>
-    if (!value) return null
+    if (typeof value !== 'object' || value === null) return null
+    value = (value as Record<string, unknown>)[key]
+    if (value === undefined) return null
   }
   
-  return value as string
+  return typeof value === 'string' ? value : null
 }
 
 export const getSpacing = (size: keyof typeof theme.spacing) => {

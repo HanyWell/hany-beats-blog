@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -15,16 +15,16 @@ export default function ProfileCardModal({ isOpen, onClose, type }: ProfileCardM
   const config = isDJ ? {
     color: '#dc2626', // red-600
     glowColor: 'rgb(220, 38, 38)',
-    badge: '— Seal',
+    badge: 'â€” Seal',
     avatar: '/img/223951.jpg',
-    name: '🎧 Hany Well',
-    title: 'DJ • Producer • Vinyl Lover',
-    description: 'DJ nie je len môj koníček, ale je to môj životný štýl od roku 2010.',
+    name: 'đźŽ§ Hany Well',
+    title: 'DJ â€˘ Producer â€˘ Vinyl Lover',
+    description: 'DJ nie je len mĂ´j konĂ­ÄŤek, ale je to mĂ´j ĹľivotnĂ˝ ĹˇtĂ˝l od roku 2010.',
     stats: [
-      { icon: '💿', label: 'Vinyl DJ' },
-      { icon: '📋', label: 'Stovky playlistov' },
-      { icon: '▶️', label: '10K+ Plays' },
-      { icon: '🎛️', label: '100+ Mixov' }
+      { icon: 'đź’ż', label: 'Vinyl DJ' },
+      { icon: 'đź“‹', label: 'Stovky playlistov' },
+      { icon: 'â–¶ď¸Ź', label: '10K+ Plays' },
+      { icon: 'đźŽ›ď¸Ź', label: '100+ Mixov' }
     ],
     buttons: [
       { label: 'Mixy', href: '/mixy', filled: true },
@@ -33,16 +33,16 @@ export default function ProfileCardModal({ isOpen, onClose, type }: ProfileCardM
   } : {
     color: '#ea580c', // orange-600
     glowColor: 'rgb(234, 88, 12)',
-    badge: '— Seal',
+    badge: 'â€” Seal',
     avatar: '/img/223951.jpg',
-    name: '💻 Some Mahony',
+    name: 'đź’» Some Mahony',
     title: 'Full-Stack Developer',
-    description: 'Pretváram nápady na živé, interaktívne weby. Špecializácia na moderné frameworky a UX dizajn.',
+    description: 'PretvĂˇram nĂˇpady na ĹľivĂ©, interaktĂ­vne weby. Ĺ pecializĂˇcia na modernĂ© frameworky a UX dizajn.',
     traits: [
-      { icon: '⚡', label: 'Clean Code Advocate' },
-      { icon: '🎨', label: 'UI/UX Enthusiast' },
-      { icon: '🚀', label: 'Performance Optimizer' },
-      { icon: '📚', label: 'Continuous Learner' }
+      { icon: 'âšˇ', label: 'Clean Code Advocate' },
+      { icon: 'đźŽ¨', label: 'UI/UX Enthusiast' },
+      { icon: 'đźš€', label: 'Performance Optimizer' },
+      { icon: 'đź“š', label: 'Continuous Learner' }
     ],
     techStack: [
       { name: 'Next.js', level: 90, color: '#06b6d4' },
@@ -119,7 +119,7 @@ export default function ProfileCardModal({ isOpen, onClose, type }: ProfileCardM
               {/* Stats or Traits */}
               {isDJ ? (
                 <div className="grid grid-cols-2 gap-3 mb-6">
-                  {config.stats.map((stat, idx) => (
+                  {config.stats?.map((stat, idx) => (
                     <div
                       key={idx}
                       className="relative p-4 rounded-lg border"
@@ -146,7 +146,7 @@ export default function ProfileCardModal({ isOpen, onClose, type }: ProfileCardM
                 <>
                   {/* Traits */}
                   <div className="space-y-2 mb-4">
-                    {config.traits.map((trait, idx) => (
+                    {config.traits?.map((trait, idx) => (
                       <div key={idx} className="flex items-center gap-2 text-sm text-gray-300">
                         <span>{trait.icon}</span>
                         <span>{trait.label}</span>
@@ -157,10 +157,10 @@ export default function ProfileCardModal({ isOpen, onClose, type }: ProfileCardM
                   {/* Tech Stack */}
                   <div className="mb-6">
                     <div className="text-xs text-gray-500 font-bold mb-3 flex items-center gap-2">
-                      <span>⚡</span> Tech Stack:
+                      <span>âšˇ</span> Tech Stack:
                     </div>
                     <div className="space-y-3">
-                      {config.techStack.map((tech, idx) => (
+                      {config.techStack?.map((tech, idx) => (
                         <div key={idx}>
                           <div className="flex justify-between text-xs mb-1">
                             <span className="text-gray-400 font-semibold">{tech.name}</span>
@@ -208,3 +208,4 @@ export default function ProfileCardModal({ isOpen, onClose, type }: ProfileCardM
     </AnimatePresence>
   )
 }
+
