@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { FaFacebook, FaSoundcloud, FaInstagram, FaEnvelope, FaYoutube } from 'react-icons/fa'
 import Link from 'next/link'
+import { socials } from '@/config/socials'
 
 export default function AboutPage() {
   return (
@@ -30,7 +31,7 @@ export default function AboutPage() {
             {/* SOCIÁLKY */}
             <div className="flex justify-center gap-6 mb-8">
               <a 
-                href="https://www.facebook.com/HanyWellik/" 
+                href={socials.facebook} 
                 target="_blank" rel="noopener noreferrer"
                 className="w-14 h-14 bg-red-600/20 hover:bg-red-500 text-white rounded-2xl flex items-center justify-center text-2xl transition-all duration-300 hover:scale-110 shadow-lg hover:shadow-red-500/50"
                 title="Facebook"
@@ -38,7 +39,7 @@ export default function AboutPage() {
                 <FaFacebook />
               </a>
               <a 
-                href="https://on.soundcloud.com/ec63S8v1qUqan9cIQq" 
+                href={socials.soundcloud} 
                 target="_blank" rel="noopener noreferrer"
                 className="w-14 h-14 bg-orange-500/80 hover:bg-orange-400 text-white rounded-2xl flex items-center justify-center text-2xl transition-all duration-300 hover:scale-110 shadow-lg hover:shadow-orange-400/50"
                 title="SoundCloud"
@@ -46,15 +47,15 @@ export default function AboutPage() {
                 <FaSoundcloud />
               </a>
               <a 
-  href="https://www.instagram.com/_hany_well_/" 
-  target="_blank" rel="noopener noreferrer"
-  className="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 text-white rounded-2xl flex items-center justify-center text-2xl transition-all duration-300 hover:scale-110 shadow-lg"
-  title="Instagram"
->
-  <FaInstagram />
-</a>
+                href={socials.instagram} 
+                target="_blank" rel="noopener noreferrer"
+                className="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 text-white rounded-2xl flex items-center justify-center text-2xl transition-all duration-300 hover:scale-110 shadow-lg"
+                title="Instagram"
+              >
+                <FaInstagram />
+              </a>
               <a 
-                href="mailto:some.mahony@yahoo.com"
+                href={socials.email}
                 
                 className="w-14 h-14 bg-blue-500/80 hover:bg-blue-400 text-white rounded-2xl flex items-center justify-center text-2xl transition-all duration-300 hover:scale-110 shadow-lg hover:shadow-blue-400/50"
                 title="Email"
@@ -62,14 +63,14 @@ export default function AboutPage() {
                 <FaEnvelope />
               </a>
               <a 
-                              href="https://www.youtube.com/@TheDJHany" 
-                              target="_blank" 
-                              rel="noopener noreferrer"
-                              className="w-12 h-12 bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white rounded-xl flex items-center justify-center text-xl transition-all duration-300 hover:scale-110 shadow-lg hover:shadow-red-400/50"
-                              title="YouTube"
-                            >
-                              <FaYoutube />
-                            </a>
+                href={socials.youtube} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-12 h-12 bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white rounded-xl flex items-center justify-center text-xl transition-all duration-300 hover:scale-110 shadow-lg hover:shadow-red-400/50"
+                title="YouTube"
+              >
+                <FaYoutube />
+              </a>
             </div>
           </div>
         </div>

@@ -1,11 +1,12 @@
-'use client'
+// app/layout.tsx
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import './globals.css'
 import Navigation from './components/Navigation'
 import Footer from './components/Footer'
-import FloatingLines from './components/FloatingLines'
-import { useState } from 'react'
+import SpotifyPlayer from './components/SpotifyPlayer'
+import { AudioProvider } from '@/contexts/AudioContext'
+import GlobalAudioPlayer from '@/components/GlobalAudioPlayer'
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -14,53 +15,23 @@ const poppins = Poppins({
   weight: ['300','400','500','600','700'],
 })
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  const [showSpotify, setShowSpotify] = useState(false)
+export const metadata: Metadata = {
+  title: 'Hany Beats - Drum & Bass DJ & Producer',
+  description: 'Drum & Bass DJ a producent. Liquid, Jump-up, Deep a Neurofunk beats. Mixy, playlisty a DJ cesta. Objav svet DnB hudby.',
+  keywords: ['Drum & Bass', 'DnB', 'DJ', 'producer', 'Liquid', 'Jump-up', 'Neurofunk', 'Hany Beats', 'electronic music', 'DJ mixes', 'Slovensko'],
+          <body className="bg-black text-white font-poppins antialiased relative">
+            <AudioProvider>
+              <div className="relative z-10">
+                <Navigation />
+                {children}
+                <Footer />
+              </div>
 
-  return (
-    <>
-      <html lang="sk" suppressHydrationWarning className={poppins.variable} style={{ colorScheme: 'dark' }}>
-        <head>
-          <meta name="color-scheme" content="dark" />
-        </head>
-        <body className="bg-gray-900 text-white font-poppins antialiased relative">
-  
-  {/* FloatingLines - z-0, dostáva mouse eventy */}
-  <div className="fixed inset-0 z-0 overflow-hidden">
-    <FloatingLines
-      linesGradient={["#ffffffea","#990000","#ff1a1a","#1a0000"]}
-      animationSpeed={2}
-      interactive={true}
-      bendRadius={15}
-      bendStrength={-2}
-      mouseDamping={0.02}
-      parallax={true}
-      parallaxStrength={0.2}
-      mixBlendMode="screen"
-    />
-  </div>
-
-  {/* Content wrapper - PREPÚŠŤA mouse eventy */}
-  <div className="relative z-10 pointer-events-none">
-    {/* Navigation - len interaktívne prvky fungujú */}
-    <div className="pointer-events-auto">
-      <Navigation />
-    </div>
-    
-    {/* Children - len interaktívne prvky fungujú */}
-    <div className="pointer-events-auto">
-      {children}
-    </div>
-    
-    {/* Footer - len interaktívne prvky fungujú */}
-    <div className="pointer-events-auto">
-      <Footer />
-    </div>
-  </div>
+              <div className="h-20"></div>
+              <SpotifyPlayer />
+              <GlobalAudioPlayer />
+            </AudioProvider>
+          </body>
   
           
           {/* Spotify button */}
@@ -108,10 +79,20 @@ export default function RootLayout({
               <p className="mt-3 text-[10px] md:text-xs text-gray-400 text-center">
                 Klikni na track alebo <a href="https://open.spotify.com/playlist/0L3onXgk79GjldZukrykKw" target="_blank" rel="noopener noreferrer" className="text-green-400 hover:underline">otvor v Spotify app</a>
               </p>
+=======
+        <body className="bg-black text-white font-poppins antialiased relative">
+          <AudioProvider>
+            <div className="relative z-10">
+              <Navigation />
+              {children}
+              <Footer />
+>>>>>>> refs/rewritten/copilot-worktree-2026-02-04T08-54-41
             </div>
-          </div>
-          
-          <div className="h-20"></div>
+            
+            <div className="h-20"></div>
+            <SpotifyPlayer />
+            <GlobalAudioPlayer />
+          </AudioProvider>
         </body>
       </html>
     </>

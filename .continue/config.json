@@ -1,0 +1,17 @@
+{
+  "models": [
+    {
+      "title": "Claude 3.5 Sonnet",
+      "provider": "anthropic",
+      "model": "claude-3-5-sonnet-20241022",
+      "apiKey": "con-e4ed7e203f962628a36ee33d4a91f40a8c4aad3d2a1ad187998b29c050a32539c"
+    }
+  ],
+  "tabAutocompleteModel": {
+    "title": "Claude 3.5 Sonnet",
+    "provider": "anthropic",
+    "model": "claude-3-5-sonnet-20241022",
+    "apiKey": "con-e4ed7e203f962628a36ee33d4a91f40a8c4aad3d2a1ad187998b29c050a32539c"
+  },
+  "allowAnonymousTelemetry": false
+}

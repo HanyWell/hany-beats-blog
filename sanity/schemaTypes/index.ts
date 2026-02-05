@@ -6,6 +6,7 @@ import { blockContentType } from './blockContentType' // import schémy Block Co
 import { categoryType } from './categoryType'         // import schémy Category
 import { postType } from './postType'                 // import schémy Post
 import { authorType } from './authorType'             // import schémy Author
+import { mixType } from './mixType'                   // import schémy Mix
 
 // Tu vytvoríme POLE všetkých schém a pomenujeme ho schemaTypes
 export const schemaTypes: SchemaTypeDefinition[] = [
@@ -13,4 +14,5 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   categoryType,
   postType,
   authorType,
+  mixType,
 ]
