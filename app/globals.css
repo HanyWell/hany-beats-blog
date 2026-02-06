@@ -139,6 +139,26 @@ body {
 .animate-float-particle-3 { animation: float-particle-3 6s ease-in-out infinite; }
 
 /* ===================================== */
+/* NEON GLOW PULSE (BPM-synced)          */
+/* ===================================== */
+@keyframes neonGlowPulse {
+  0%, 100% {
+    opacity: var(--pulse-opacity-min);
+    transform: scale(var(--pulse-scale-min, 1));
+  }
+  50% {
+    opacity: var(--pulse-opacity-max);
+    transform: scale(var(--pulse-scale-max, 1));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .neon-pulse-layer {
+    animation: none !important;
+  }
+}
+
+/* ===================================== */
 /* TEMA A KOMPONENTY */
 /* ===================================== */
 :root {

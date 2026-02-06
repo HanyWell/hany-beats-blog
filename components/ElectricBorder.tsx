@@ -1,4 +1,15 @@
 import React, { useEffect, useRef, useCallback, CSSProperties, ReactNode } from 'react';
+import { BPM, NEON_PULSE } from '@/lib/constants';
+
+// Allow CSS custom properties in inline styles
+declare module 'react' {
+  interface CSSProperties {
+    '--pulse-opacity-min'?: number;
+    '--pulse-opacity-max'?: number;
+    '--pulse-scale-min'?: number;
+    '--pulse-scale-max'?: number;
+  }
+}
 
 function hexToRgba(hex: string, alpha: number = 1): string {
   if (!hex) return `rgba(0,0,0,${alpha})`;
@@ -24,6 +35,7 @@ interface ElectricBorderProps {
   borderRadius?: number;
   className?: string;
   style?: CSSProperties;
+  pulse?: boolean;
 }
 
 const ElectricBorder: React.FC<ElectricBorderProps> = ({
@@ -33,7 +45,8 @@ const ElectricBorder: React.FC<ElectricBorderProps> = ({
   chaos = 0.12,
   borderRadius = 24,
   className,
-  style
+  style,
+  pulse = true
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);

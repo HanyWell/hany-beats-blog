@@ -15,6 +15,7 @@ import ElectricBorder from '@/components/ElectricBorder'
 import ProfileCard from '@/components/ProfileCard'
 import AvatarOrb from './AvatarOrb'
 import ProfileCardModal from './ProfileCardModal'
+import GlassCard from '@/components/ui/GlassCard'
 
 const HeroSection = memo(function HeroSection() {
   const [activeModal, setActiveModal] = useState<'dj' | 'dev' | null>(null)
@@ -27,19 +28,19 @@ const HeroSection = memo(function HeroSection() {
   ]
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-transparent py-20">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-transparent py-24">
       <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
-        
-        {/* Desktop: Avatar Orbs */}
-        <div className="hidden lg:flex justify-center items-center gap-12 mb-20 min-h-[400px]">
-          <AvatarOrb 
+
+        {/* Desktop: Avatar Orbs - Enhanced spacing & colors */}
+        <div className="hidden lg:flex justify-center items-center gap-16 mb-24 min-h-[480px]">
+          <AvatarOrb
             imageSrc="/img/223951.jpg"
-            glowColor="#dc2626"
+            glowColor="#f87171"
             onClick={() => setActiveModal('dj')}
           />
-          <AvatarOrb 
+          <AvatarOrb
             imageSrc="/img/steven-shea-kyuubi-seal.jpg"
-            glowColor="#ea580c"
+            glowColor="#22d3ee"
             onClick={() => setActiveModal('dev')}
           />
         </div>
@@ -432,77 +433,77 @@ const HeroSection = memo(function HeroSection() {
           </ExpandablePersona>
         </div>
 
-        {/* Mobile: Carousel */}
+        {/* Mobile: Glass Cards */}
         <div className="lg:hidden">
           <div className="space-y-8">
-            {/* DJ Card */}
-            <div className="bg-gradient-to-br from-black/80 via-red-950/20 to-black/80 backdrop-blur-md border border-red-500/20 rounded-2xl p-6">
-              <div className="relative w-32 h-32 mx-auto mb-4">
-                <div className="absolute inset-0 bg-gradient-to-br from-red-500 to-red-700 rounded-full blur-xl opacity-50" />
-                <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-red-500/50">
+            {/* DJ Glass Card */}
+            <GlassCard glowColor="red" intensity="medium" className="p-8">
+              <div className="relative w-36 h-36 mx-auto mb-6">
+                <div className="absolute inset-0 bg-gradient-to-br from-red-400 to-red-600 rounded-full blur-2xl opacity-60" />
+                <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-red-400/50">
                   <Image src="/img/ja.jpg" alt="Hany Well" fill className="object-cover" priority />
                 </div>
               </div>
-              
-              <div className="text-center mb-4">
-                <h2 className="text-2xl font-black text-white mb-1">đźŽ§ Hany Well</h2>
-                <p className="text-red-400 text-sm font-semibold">DJ â€˘ Producer â€˘ Vinyl Lover</p>
+
+              <div className="text-center mb-6">
+                <h2 className="text-3xl font-black text-white mb-2">🎧 Hany Well</h2>
+                <p className="text-red-400 text-base font-bold tracking-wide">DJ • Producer • Vinyl Lover</p>
               </div>
 
-              <div className="grid grid-cols-3 gap-2 mb-4">
-                <div className="bg-white/5 rounded-lg p-2 text-center">
-                  <div className="text-lg font-bold text-red-400">10K+</div>
+              <div className="grid grid-cols-3 gap-3 mb-6">
+                <div className="bg-white/5 backdrop-blur-sm rounded-xl p-3 text-center border border-white/10">
+                  <div className="text-xl font-black text-red-400">10K+</div>
                   <div className="text-xs text-gray-500">Plays</div>
                 </div>
-                <div className="bg-white/5 rounded-lg p-2 text-center">
-                  <div className="text-lg font-bold text-red-400">100+</div>
+                <div className="bg-white/5 backdrop-blur-sm rounded-xl p-3 text-center border border-white/10">
+                  <div className="text-xl font-black text-red-400">100+</div>
                   <div className="text-xs text-gray-500">Mixov</div>
                 </div>
-                <div className="bg-white/5 rounded-lg p-2 text-center">
-                  <div className="text-lg font-bold text-red-400">300+</div>
+                <div className="bg-white/5 backdrop-blur-sm rounded-xl p-3 text-center border border-white/10">
+                  <div className="text-xl font-black text-red-400">300+</div>
                   <div className="text-xs text-gray-500">Followers</div>
                 </div>
               </div>
 
-              <div className="flex gap-2">
-                <Link href="/mixy" className="flex-1 px-4 py-2 bg-red-600 hover:bg-red-500 text-white rounded-full font-semibold text-sm text-center">
+              <div className="flex gap-3">
+                <Link href="/mixy" className="flex-1 px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-400 hover:to-red-500 text-white rounded-full font-bold text-sm text-center transition-all duration-300 shadow-lg">
                   Mixy
                 </Link>
-                <Link href="/playlisty" className="flex-1 px-4 py-2 border-2 border-red-500 text-red-400 rounded-full font-semibold text-sm text-center">
+                <Link href="/playlisty" className="flex-1 px-6 py-3 border-2 border-red-400/50 text-red-400 hover:bg-red-500/10 rounded-full font-bold text-sm text-center transition-all duration-300">
                   Playlisty
                 </Link>
               </div>
-            </div>
+            </GlassCard>
 
-            {/* Dev Card */}
-            <div className="bg-gradient-to-br from-black/80 via-cyan-950/20 to-black/80 backdrop-blur-md border border-cyan-500/20 rounded-2xl p-6">
-              <div className="relative w-32 h-32 mx-auto mb-4">
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-full blur-xl opacity-50" />
-                <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-cyan-500/50">
+            {/* Dev Glass Card - Cyan theme */}
+            <GlassCard glowColor="cyan" intensity="medium" className="p-8">
+              <div className="relative w-36 h-36 mx-auto mb-6">
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-full blur-2xl opacity-60" />
+                <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-cyan-400/50">
                   <Image src="/img/ja.jpg" alt="Some Mahony" fill className="object-cover" />
                 </div>
               </div>
-              
-              <div className="text-center mb-4">
-                <h2 className="text-2xl font-black text-white mb-1">đź’» Some Mahony</h2>
-                <p className="text-cyan-400 text-sm font-semibold">Front-End Developer</p>
+
+              <div className="text-center mb-6">
+                <h2 className="text-3xl font-black text-white mb-2">💻 Some Mahony</h2>
+                <p className="text-cyan-400 text-base font-bold tracking-wide">Front-End Developer</p>
               </div>
 
-              <div className="space-y-3 mb-4">
+              <div className="space-y-3 mb-6">
                 <SkillBadge name="Next.js" level={90} color="cyan" />
                 <SkillBadge name="React" level={90} color="blue" />
                 <SkillBadge name="TypeScript" level={85} color="blue" />
               </div>
 
-              <div className="flex gap-2">
-                <Link href="/blog" className="flex-1 px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-full font-semibold text-sm text-center">
+              <div className="flex gap-3">
+                <Link href="/blog" className="flex-1 px-6 py-3 bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-400 hover:to-cyan-500 text-white rounded-full font-bold text-sm text-center transition-all duration-300 shadow-lg">
                   Blog
                 </Link>
-                <Link href="/about" className="flex-1 px-4 py-2 border-2 border-cyan-500 text-cyan-400 rounded-full font-semibold text-sm text-center">
+                <Link href="/about" className="flex-1 px-6 py-3 border-2 border-cyan-400/50 text-cyan-400 hover:bg-cyan-500/10 rounded-full font-bold text-sm text-center transition-all duration-300">
                   About
                 </Link>
               </div>
-            </div>
+            </GlassCard>
           </div>
         </div>
 

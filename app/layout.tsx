@@ -7,6 +7,7 @@ import Footer from './components/Footer'
 import SpotifyPlayer from './components/SpotifyPlayer'
 import { AudioProvider } from '@/contexts/AudioContext'
 import GlobalAudioPlayer from '@/components/GlobalAudioPlayer'
+import MyStatsig from './my-statsig'
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -82,17 +83,19 @@ export default function RootLayout({
           <meta name="color-scheme" content="dark" />
         </head>
         <body className="bg-black text-white font-poppins antialiased relative">
-          <AudioProvider>
-            <div className="relative z-10">
-              <Navigation />
-              {children}
-              <Footer />
-            </div>
+          <MyStatsig>
+            <AudioProvider>
+              <div className="relative z-10">
+                <Navigation />
+                {children}
+                <Footer />
+              </div>
 
-            <div className="h-20"></div>
-            <SpotifyPlayer />
-            <GlobalAudioPlayer />
-          </AudioProvider>
+              <div className="h-20"></div>
+              <SpotifyPlayer />
+              <GlobalAudioPlayer />
+            </AudioProvider>
+          </MyStatsig>
         </body>
       </html>
     </>

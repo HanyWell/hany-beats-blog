@@ -1,6 +1,6 @@
 'use client'
 import { lazy, Suspense } from 'react'
-import HeroSection from './components/HeroSection'
+import HeroNew from './components/HeroNew'
 import LightPillar from '@/components/LightPillar'
 const FeaturesSection = lazy(() => import('./components/FeaturesSection'))
 const GenreSection = lazy(() => import('./components/GenreSection'))
@@ -47,7 +47,7 @@ export default function HomePage() {
       </div>
       
       <main id="main-content" className="min-h-screen text-white">
-        <HeroSection />
+        <HeroNew />
         <Suspense fallback={<LoadingFallback />}>
           <FeaturesSection />
         </Suspense>

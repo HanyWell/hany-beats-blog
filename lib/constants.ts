@@ -39,6 +39,23 @@ export const TRANSITION_EASING = {
   LINEAR: "linear" as const
 } as const
 
+// Časy a periódy pre vizuálne efekty (nepoužívajte magické čísla)
+export const EFFECT_TIMING = {
+  NEON_PULSE_BPM: 172,
+  NEON_PULSE_PERIOD: 0.468, // sekundy (60/172)
+  VINYL_SPIN: 2, // sekundy na otočenie
+  VINYL_SPIN_SLOW: 8, // pre reduced motion
+  GLITCH_MIN: 3, // sekundy
+  GLITCH_MAX: 8, // sekundy
+  GLITCH_DURATION: 0.2, // sekundy
+  EQ_BAR_MIN: 0.3, // sekundy
+  EQ_BAR_MAX: 1.8, // sekundy
+  EQ_BAR_DELAY: 2, // sekundy
+  SMOKE_DRIFT_1: 15, // sekundy
+  SMOKE_DRIFT_2: 20, // sekundy
+  SMOKE_DRIFT_3: 18 // sekundy
+} as const
+
 export const TOUCH_VALUES = {
   LONG_PRESS_TIMEOUT: 500,    // ms
   SWIPE_THRESHOLD: 50,        // px
@@ -83,4 +100,31 @@ export const COLORS = {
   GRAY_400: '#9ca3af',
   GRAY_500: '#6b7280',
   BLACK: '#000000'
+} as const
+
+export const BPM = {
+  TEMPO: 172,
+  BEAT_DURATION_S: 60 / 172,                        // ~0.349s
+  BEAT_DURATION_MS: Math.round((60 / 172) * 1000),  // ~349ms
+} as const
+
+export const NEON_PULSE = {
+  INNER_OPACITY_MIN: 0.85,
+  INNER_OPACITY_MAX: 1.0,
+
+  MIDDLE_OPACITY_MIN: 0.7,
+  MIDDLE_OPACITY_MAX: 1.0,
+  MIDDLE_SCALE_MIN: 1.0,
+  MIDDLE_SCALE_MAX: 1.02,
+
+  OUTER_OPACITY_MIN: 0.3,
+  OUTER_OPACITY_MAX: 0.55,
+  OUTER_SCALE_MIN: 1.1,
+  OUTER_SCALE_MAX: 1.16,
+
+  INNER_DELAY_FRACTION: 0,
+  MIDDLE_DELAY_FRACTION: 0.08,
+  OUTER_DELAY_FRACTION: 0.16,
+
+  EASING: 'cubic-bezier(0.4, 0, 0.6, 1)',
 } as const
