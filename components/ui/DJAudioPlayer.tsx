@@ -1,56 +1,53 @@
 'use client'
-import { useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { 
-  Play, 
-  Pause, 
-  Volume2, 
-  VolumeX, 
-  SkipBack, 
+import {
+  Play,
+  Pause,
+  Volume2,
+  VolumeX,
+  SkipBack,
   SkipForward,
   Download,
   Loader2
 } from 'lucide-react'
-import { useAudioPlayer } from '@/hooks/useAudioPlayer'
 import WaveformDisplay from './WaveformDisplay'
 import { ANIMATION_DURATIONS } from '@/lib/constants'
 
 interface DJAudioPlayerProps {
   audioSrc: string
   title: string
-  onTimeUpdate?: (currentTime: number) => void
+  isPlaying: boolean
+  currentTime: number
+  duration: number
+  volume: number
+  isMuted: boolean
+  isLoading: boolean
+  error: string | null
+  togglePlay: () => void
+  seek: (time: number) => void
+  skip: (seconds: number) => void
+  setVolume: (vol: number) => void
+  toggleMute: () => void
   className?: string
 }
 
 export default function DJAudioPlayer({
   audioSrc,
   title,
-  onTimeUpdate,
+  isPlaying,
+  currentTime,
+  duration,
+  volume,
+  isMuted,
+  isLoading,
+  error,
+  togglePlay,
+  seek,
+  skip,
+  setVolume,
+  toggleMute,
   className = ''
 }: DJAudioPlayerProps) {
-  const {
-    isPlaying,
-    currentTime,
-    duration,
-    volume,
-    isMuted,
-    isLoading,
-    error,
-    togglePlay,
-    seek,
-    skip,
-    setVolume,
-    toggleMute,
-    audioRef
-  } = useAudioPlayer(audioSrc)
-
-  // Notify parent of time updates
-  useEffect(() => {
-    if (onTimeUpdate) {
-      onTimeUpdate(currentTime)
-    }
-  }, [currentTime, onTimeUpdate])
-
   // Format time to MM:SS
   const formatTime = (seconds: number) => {
     if (!isFinite(seconds)) return '0:00'
@@ -71,9 +68,6 @@ export default function DJAudioPlayer({
       transition={{ duration: ANIMATION_DURATIONS.SMOOTH }}
       className={`bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 ${className}`}
     >
-      {/* Hidden audio element */}
-      <audio ref={audioRef} src={audioSrc} preload="metadata" />
-
       {/* Title and time */}
       <div className="mb-6">
         <h3 className="text-xl font-semibold text-white mb-2">{title}</h3>
@@ -172,7 +166,7 @@ export default function DJAudioPlayer({
         <div className="flex items-center gap-4">
           {/* Volume control - hidden on mobile */}
           <div className="hidden md:flex items-center gap-2">
-            <motion.button 
+            <motion.button
               onClick={toggleMute}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

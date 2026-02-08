@@ -89,7 +89,18 @@ export interface AudioCardProps {
 export interface DJAudioPlayerProps {
   audioSrc: string
   title: string
-  onTimeUpdate?: (currentTime: number) => void
+  isPlaying: boolean
+  currentTime: number
+  duration: number
+  volume: number
+  isMuted: boolean
+  isLoading: boolean
+  error: string | null
+  togglePlay: () => void
+  seek: (time: number) => void
+  skip: (seconds: number) => void
+  setVolume: (vol: number) => void
+  toggleMute: () => void
   className?: string
 }
 

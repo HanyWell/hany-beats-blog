@@ -20,6 +20,7 @@ interface AudioContextType {
   seek: (time: number) => void
   togglePlay: () => void
   updateTime: (time: number, dur: number) => void
+  updateIsPlaying: (playing: boolean) => void
 }
 
 const AudioContext = createContext<AudioContextType | undefined>(undefined)
@@ -48,6 +49,10 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     durationRef.current = dur
   }, [])
 
+  const updateIsPlaying = useCallback((playing: boolean) => {
+    setIsPlaying(playing)
+  }, [])
+
   const seek = useCallback((time: number) => {
     audioControlsRef.current?.seek(time)
   }, [])
@@ -72,6 +77,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
         seek,
         togglePlay,
         updateTime,
+        updateIsPlaying,
         registerControls
       }}
     >

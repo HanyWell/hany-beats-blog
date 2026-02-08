@@ -1,5 +1,6 @@
 'use client'
 import dynamic from 'next/dynamic'
+import { useAudioPlayer } from '@/hooks/useAudioPlayer'
 
 const DJAudioPlayer = dynamic(() => import('./DJAudioPlayer'), {
   ssr: false,
@@ -15,10 +16,29 @@ const DJAudioPlayer = dynamic(() => import('./DJAudioPlayer'), {
 interface DJAudioPlayerWrapperProps {
   audioSrc: string
   title: string
-  onTimeUpdate?: (currentTime: number) => void
   className?: string
 }
 
-export default function DJAudioPlayerWrapper(props: DJAudioPlayerWrapperProps) {
-  return <DJAudioPlayer {...props} />
+export default function DJAudioPlayerWrapper({ audioSrc, title, className }: DJAudioPlayerWrapperProps) {
+  const playerState = useAudioPlayer(audioSrc)
+
+  return (
+    <DJAudioPlayer
+      audioSrc={audioSrc}
+      title={title}
+      isPlaying={playerState.isPlaying}
+      currentTime={playerState.currentTime}
+      duration={playerState.duration}
+      volume={playerState.volume}
+      isMuted={playerState.isMuted}
+      isLoading={playerState.isLoading}
+      error={playerState.error}
+      togglePlay={playerState.togglePlay}
+      seek={playerState.seek}
+      skip={playerState.skip}
+      setVolume={playerState.setVolume}
+      toggleMute={playerState.toggleMute}
+      className={className}
+    />
+  )
 }

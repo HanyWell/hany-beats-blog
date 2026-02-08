@@ -12,11 +12,11 @@ const DJAudioPlayer = dynamic(() => import('@/components/ui/DJAudioPlayer'), {
 })
 
 export default function GlobalAudioPlayer() {
-  const { currentTrack, clearTrack, updateTime, registerControls } = useAudio()
+  const { currentTrack, clearTrack, updateTime, updateIsPlaying, registerControls } = useAudio()
   const [isExpanded, setIsExpanded] = useState(false)
   const [showVolumeSlider, setShowVolumeSlider] = useState(false)
   
-  const { isPlaying, currentTime, duration, volume, isMuted, togglePlay, seek, setVolume, toggleMute } = useAudioPlayer(
+  const { isPlaying, currentTime, duration, volume, isMuted, isLoading, error, togglePlay, seek, skip, setVolume, toggleMute } = useAudioPlayer(
     currentTrack?.audioSrc || ''
   )
 
@@ -29,6 +29,11 @@ export default function GlobalAudioPlayer() {
   useEffect(() => {
     updateTime(currentTime, duration)
   }, [currentTime, duration, updateTime])
+
+  // Sync isPlaying state with context
+  useEffect(() => {
+    updateIsPlaying(isPlaying)
+  }, [isPlaying, updateIsPlaying])
 
   if (!currentTrack) return null
 
@@ -99,6 +104,18 @@ export default function GlobalAudioPlayer() {
                 <DJAudioPlayer
                   audioSrc={currentTrack.audioSrc}
                   title={currentTrack.title}
+                  isPlaying={isPlaying}
+                  currentTime={currentTime}
+                  duration={duration}
+                  volume={volume}
+                  isMuted={isMuted}
+                  isLoading={isLoading}
+                  error={error}
+                  togglePlay={togglePlay}
+                  seek={seek}
+                  skip={skip}
+                  setVolume={setVolume}
+                  toggleMute={toggleMute}
                   className="border-0 bg-transparent p-0"
                 />
               </motion.div>
