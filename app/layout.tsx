@@ -16,6 +16,12 @@ const poppins = Poppins({
   weight: ['300','400','500','600','700'],
 })
 
+const baseUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : 'http://localhost:3000'
+
 export const metadata: Metadata = {
   title: 'Hany Beats - Drum & Bass DJ & Producer',
   description: 'Drum & Bass DJ a producent. Liquid, Jump-up, Deep a Neurofunk beats. Mixy, playlisty a DJ cesta. Objav svet DnB hudby.',
@@ -28,7 +34,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://hanybeats.sk'),
+  metadataBase: new URL(baseUrl),
   alternates: {
     canonical: '/',
   },
@@ -38,7 +44,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'sk_SK',
     siteName: 'Hany Beats',
-    url: 'https://hanybeats.sk',
+    url: baseUrl,
     images: [
       {
         url: '/UBG.jpg',
