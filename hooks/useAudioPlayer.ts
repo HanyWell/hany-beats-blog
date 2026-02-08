@@ -34,6 +34,17 @@ export function useAudioPlayer(audioSrc: string): UseAudioPlayerReturn {
     if (!audioRef.current) {
       audioRef.current = new Audio()
       audioRef.current.preload = 'metadata'
+      audioRef.current.crossOrigin = 'anonymous'
+    }
+
+    return () => {
+      const audio = audioRef.current
+      if (audio) {
+        audio.pause()
+        audio.removeAttribute('src')
+        audio.load()
+        audioRef.current = null
+      }
     }
   }, [])
 
@@ -155,13 +166,22 @@ export function useAudioPlayer(audioSrc: string): UseAudioPlayerReturn {
     if (audio && audioSrc) {
       if (audio.src !== audioSrc) {
         console.log('Loading audio src:', audioSrc)
+        setIsLoading(true)
         audio.src = audioSrc
         audio.load()
-        // Autoplay when new src is loaded
-        audio.play().catch((err) => {
-          console.error('Autoplay failed:', err)
-          setError('Autoplay zablokovaný prehliadačom. Klikni na play.')
-        })
+
+        const handleCanPlayOnce = () => {
+          audio.play().catch((err) => {
+            console.error('Autoplay failed:', err)
+            setError('Autoplay zablokovaný prehliadačom. Klikni na play.')
+          })
+          audio.removeEventListener('canplay', handleCanPlayOnce)
+        }
+        audio.addEventListener('canplay', handleCanPlayOnce)
+
+        return () => {
+          audio.removeEventListener('canplay', handleCanPlayOnce)
+        }
       }
     }
   }, [audioSrc])
