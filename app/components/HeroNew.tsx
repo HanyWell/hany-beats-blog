@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { memo, useState } from 'react'
 import { motion } from 'framer-motion'
 import ElectricBorder from '@/components/ElectricBorder'
@@ -10,13 +9,6 @@ import ProfileCardModal from './ProfileCardModal'
 
 const HeroNew = memo(function HeroNew() {
   const [activeModal, setActiveModal] = useState<'dj' | 'dev' | null>(null)
-
-  const djTimeline = [
-    { year: '2010-2013', title: 'Začiatky', description: 'Learning curve, prvé mixy' },
-    { year: '2013-2018', title: 'Peak Era', description: 'Active mixing, events, vinyl sets' },
-    { year: '2018-2021', title: 'Pauza', description: '2-3 roky break time', isPause: true },
-    { year: '2021-2026', title: 'Návrat', description: 'Hany Beats born, 100+ mixov' },
-  ]
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-transparent py-16 sm:py-24">
@@ -69,7 +61,7 @@ const HeroNew = memo(function HeroNew() {
                     Hany <span className="text-red-400">Beats</span>
                   </h1>
                   <p className="text-gray-400 text-base sm:text-lg max-w-xl">
-                    Moja vizitka. Web Developer a DJ v jednom.
+                    Moja vizitka. Webový developer a DJ v jednom.
                     Klikni na avatar a zisti viac.
                   </p>
                 </div>
@@ -87,7 +79,7 @@ const HeroNew = memo(function HeroNew() {
                     <span className="text-2xl">🎧</span> Prečo DJing?
                   </h3>
                   <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
-                    Ten pocit keď stojíš za pultom a vidíš ľudí pod stage ako sa bavia...
+                    Ten pocit, keď stojíš za pultom a vidíš ľudí pod pódiom, ako sa bavia...
                     To sa nedá opísať. Proste to musíš zažiť.
                   </p>
                   <p className="text-gray-500 text-sm">
@@ -103,15 +95,15 @@ const HeroNew = memo(function HeroNew() {
                   <ul className="space-y-3 text-gray-300 text-sm sm:text-base">
                     <li className="flex items-start gap-2">
                       <span className="text-red-400 mt-1">→</span>
-                      <span><strong className="text-white">Moje mixy</strong> — 100+ setov, od liquid po neurofunk</span>
+                      <span><strong className="text-white">Moje mixy</strong> — 100+ setov, od liquidu po neurofunk</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-red-400 mt-1">→</span>
-                      <span><strong className="text-white">Playlisty</strong> — hudba ktorú ja počúvam</span>
+                      <span><strong className="text-white">Playlisty</strong> — hudba, ktorú ja počúvam</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-red-400 mt-1">→</span>
-                      <span><strong className="text-white">Blog</strong> — príbehy, tipy, a občas kecy</span>
+                      <span><strong className="text-white">Blog</strong> — príbehy, tipy a občas aj kecy</span>
                     </li>
                   </ul>
                 </div>
@@ -120,8 +112,8 @@ const HeroNew = memo(function HeroNew() {
               {/* Quote */}
               <div className="bg-gradient-to-r from-red-500/10 via-red-500/5 to-transparent border-l-4 border-red-500 pl-6 py-5 mb-10 rounded-r-xl">
                 <p className="text-white text-base sm:text-lg md:text-xl font-bold">
-                  "Hany Beats je miesto kde spoznáš moju osobu cez playlisty,
-                  kde nájdeš motiváciu pokračovať a nie to vzdať."
+                  &ldquo;Hany Beats je miesto, kde spoznáš moju osobu cez playlisty,
+                  kde nájdeš motiváciu pokračovať a nevzdať to.&rdquo;
                 </p>
               </div>
 

@@ -28,7 +28,7 @@ const StorySection = memo(function StorySection() {
                 Čo je vlastne <span className="text-red-400">Hany Beats</span>?
               </h2>
               <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto">
-                Moja vizitka. Web Developera a DJa v jednom.
+                Moja vizitka. Webového developera a DJ-a v jednom.
               </p>
             </div>
 
@@ -41,7 +41,7 @@ const StorySection = memo(function StorySection() {
                   <span className="text-2xl">🎧</span> Prečo DJing?
                 </h3>
                 <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
-                  Ten pocit keď stojíš za pultom a vidíš ľudí pod stage ako sa bavia... 
+                  Ten pocit, keď stojíš za pultom a vidíš ľudí pod pódiom, ako sa bavia... 
                   To sa nedá opísať. Proste to musíš zažiť.
                 </p>
                 <p className="text-gray-400 text-sm">
@@ -57,15 +57,15 @@ const StorySection = memo(function StorySection() {
                 <ul className="space-y-3 text-gray-300 text-sm sm:text-base">
                   <li className="flex items-start gap-2">
                     <span className="text-red-400 mt-1">→</span>
-                    <span><strong className="text-white">Moje mixy</strong> — 100+ setov, od liquid po neurofunk</span>
+                    <span><strong className="text-white">Moje mixy</strong> — 100+ setov, od liquidu po neurofunk</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-red-400 mt-1">→</span>
-                    <span><strong className="text-white">Playlisty</strong> — hudba ktorú ja počúvam, bez random algorithmu</span>
+                    <span><strong className="text-white">Playlisty</strong> — hudba, ktorú ja počúvam, bez náhodných algoritmov</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-red-400 mt-1">→</span>
-                    <span><strong className="text-white">Blog</strong> — príbehy, tipy, a občas aj kecy do vetra</span>
+                    <span><strong className="text-white">Blog</strong> — príbehy, tipy a občas aj kecy do vetra</span>
                   </li>
                 </ul>
               </div>
@@ -74,8 +74,8 @@ const StorySection = memo(function StorySection() {
             {/* Quote / Motto */}
             <div className="bg-gradient-to-r from-red-500/10 via-red-500/5 to-transparent border-l-4 border-red-500 pl-6 py-5 mb-10 rounded-r-xl">
               <p className="text-white text-lg sm:text-xl font-bold">
-                "Hany Beats je miesto kde spoznáš moju osobu cez playlisty, 
-                kde nájdeš motiváciu pokračovať a nie to vzdať."
+                &ldquo;Hany Beats je miesto, kde spoznáš moju osobu cez playlisty, 
+                kde nájdeš motiváciu pokračovať a nevzdať to.&rdquo;
               </p>
             </div>
 

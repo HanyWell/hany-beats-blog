@@ -388,7 +388,7 @@ const HeroSection = memo(function HeroSection() {
                   </h3>
                   
                   <p className="text-gray-400 text-xs leading-relaxed mb-3">
-                    <span className="text-orange-400 font-semibold">"KaĹľdĂ˝ pixel mĂˇ zmysel."</span><br/>
+                    <span className="text-orange-400 font-semibold">&ldquo;KaĹľdĂ˝ pixel mĂˇ zmysel.&rdquo;</span><br/>
                     Programovanie nie je len o funkÄŤnosti - je to umenie vytvĂˇrania 
                     bezproblĂ©movĂ˝ch skĂşsenostĂ­, kde design stretĂˇva vĂ˝kon.
                   </p>
@@ -424,7 +424,7 @@ const HeroSection = memo(function HeroSection() {
 
                   <div className="mt-auto pt-3 border-t border-white/5">
                     <p className="text-xs text-gray-500 text-center italic">
-                      "Code is poetry written in logic" đź§™â€Ťâ™‚ď¸Ź
+                      &ldquo;Code is poetry written in logic&rdquo; đź§™â€Ťâ™‚ď¸Ź
                     </p>
                   </div>
                 </div>
@@ -513,4 +513,3 @@ const HeroSection = memo(function HeroSection() {
 })
 
 export default HeroSection
-
