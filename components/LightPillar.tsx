@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import * as THREE from 'three';
 
 interface LightPillarProps {
@@ -41,12 +41,16 @@ const LightPillar: React.FC<LightPillarProps> = ({
   const geometryRef = useRef<THREE.PlaneGeometry | null>(null);
   const mouseRef = useRef<THREE.Vector2>(new THREE.Vector2(0, 0));
   const timeRef = useRef<number>(0);
-  const [webGLSupported] = useState<boolean>(() => {
-    if (typeof window === 'undefined') return true;
+  const [webGLSupported, setWebGLSupported] = useState<boolean>(true);
+
+  // Check WebGL support
+  useEffect(() => {
     const canvas = document.createElement('canvas');
     const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-    return Boolean(gl);
-  });
+    if (!gl) {
+      setWebGLSupported(false);
+    }
+  }, []);
 
   useEffect(() => {
     if (!containerRef.current || !webGLSupported) return;
@@ -94,6 +98,7 @@ const LightPillar: React.FC<LightPillarProps> = ({
       });
     } catch (error) {
       console.error('Failed to create WebGL renderer:', error);
+      setWebGLSupported(false);
       return;
     }
 

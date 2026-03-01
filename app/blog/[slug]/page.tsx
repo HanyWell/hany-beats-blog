@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { PortableText } from '@portabletext/react'           // NOVÝ import
 import type { PortableTextBlock } from '@portabletext/types' // typ pre body
 import { SanityImageSource } from '@sanity/image-url/lib/types/types'
+import CommentsSection from '@/components/CommentsSection'
 
 const client = createClient({
   projectId: 'z7bgld94',
@@ -146,6 +147,11 @@ export default async function PostDetailPage({
   />
 </div>
       </article>
+
+      {/* Komentáre */}
+      <div className="max-w-4xl mx-auto px-8 pb-20">
+        <CommentsSection pageId={slug} />
+      </div>
     </main>
   )
 }

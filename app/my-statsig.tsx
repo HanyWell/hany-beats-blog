@@ -1,37 +1,34 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { LogLevel, StatsigProvider } from "@statsig/react-bindings";
 
 export default function MyStatsig({ children }: { children: React.ReactNode }) {
-  const isBrowser = typeof window !== "undefined";
-  const userID = useMemo(() => {
-    if (!isBrowser) return "anonymous-user";
+  const [isInitialized, setIsInitialized] = useState(false);
 
-    let id = localStorage.getItem("statsig_user_id");
-    if (!id) {
-      let randomId = "anonymous";
-      if (typeof crypto !== "undefined") {
-        if ("randomUUID" in crypto) {
-          randomId = crypto.randomUUID();
-        } else if ("getRandomValues" in crypto) {
-          const buffer = new Uint8Array(8);
-          crypto.getRandomValues(buffer);
-          randomId = Array.from(buffer, value => value.toString(16).padStart(2, "0")).join("");
-        }
+  // Generate or get user ID
+  const getUserID = () => {
+    if (typeof window !== 'undefined') {
+      let id = localStorage.getItem('statsig_user_id');
+      if (!id) {
+        id = `user-${Math.random().toString(36).substring(7)}`;
+        localStorage.setItem('statsig_user_id', id);
       }
-      id = `user-${randomId}`;
-      localStorage.setItem("statsig_user_id", id);
+      return id;
     }
-    return id;
-  }, [isBrowser]);
-
-  const user = {
-    userID,
+    return 'anonymous-user';
   };
 
+  const user = {
+    userID: getUserID(),
+  };
+
+  useEffect(() => {
+    setIsInitialized(true);
+  }, []);
+
   // Don't render provider until client-side initialization
-  if (!isBrowser) {
+  if (!isInitialized) {
     return <>{children}</>;
   }
 

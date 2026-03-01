@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import CommentsSection from '@/components/CommentsSection'
 
 export default function PlaylistyPage() {
   const [openPlaylist, setOpenPlaylist] = useState<string | null>(null)
@@ -281,6 +282,11 @@ export default function PlaylistyPage() {
               </div>
             )
           })}
+        </div>
+
+        {/* Komentáre */}
+        <div className="mt-16 sm:mt-20">
+          <CommentsSection pageId="playlisty" />
         </div>
       </div>
     </main>
