@@ -8,6 +8,7 @@ import SpotifyPlayer from './components/SpotifyPlayer'
 import { AudioProvider } from '@/contexts/AudioContext'
 import GlobalAudioPlayer from '@/components/GlobalAudioPlayer'
 import MyStatsig from './my-statsig'
+import { Analytics } from '@vercel/analytics/next'
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -96,6 +97,7 @@ export default function RootLayout({
               <GlobalAudioPlayer />
             </AudioProvider>
           </MyStatsig>
+          <Analytics />
         </body>
       </html>
     </>
