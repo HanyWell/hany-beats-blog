@@ -4,6 +4,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 
+export const dynamic = 'force-dynamic'
+
 const client = createClient({
   projectId: 'z7bgld94',
   dataset: 'production',
@@ -22,11 +24,11 @@ interface Post {
   slug: { current: string }
   mainImage?: SanityImageSource
   excerpt?: string
-  _publishedAt: string
+  publishedAt: string
 }
 
 export default async function BlogPage() {
-  const posts: Post[] = await client.fetch(`*[_type == "post"] | order(_publishedAt desc)`)
+  const posts: Post[] = await client.fetch(`*[_type == "post"] | order(publishedAt desc)`)
 
   return (
     <main className="min-h-screen bg-black text-white pb-20">
@@ -101,7 +103,7 @@ export default async function BlogPage() {
 
                   <div className="p-6 pt-0 mt-auto border-t border-red-950/50 flex items-center justify-between">
                     <span className="text-xs text-gray-500">
-                      {new Date(post._publishedAt).toLocaleDateString('sk-SK')}
+                      {post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('sk-SK') : ''}
                     </span>
                     {/* ČERVENÉ tlačidlo */}
                     <span className="text-red-500 font-bold text-sm flex items-center gap-1 group-hover:translate-x-2 transition-transform duration-500">

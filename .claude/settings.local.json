@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(where:*)",
+      "Bash(npx next build:*)",
+      "Bash(npx sanity --version)"
+    ]
+  }
+}
