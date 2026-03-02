@@ -51,5 +51,8 @@ public/mixy/
 # Backup súbory
 *.backup
 
+# Windows reserved name
+nul
+
 # Claude lokálne nastavenia
 .claude/

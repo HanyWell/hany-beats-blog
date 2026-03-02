@@ -154,7 +154,6 @@ export function useAudioPlayer(audioSrc: string): UseAudioPlayerReturn {
     const audio = audioRef.current
     if (audio && audioSrc) {
       if (audio.src !== audioSrc) {
-        console.log('Loading audio src:', audioSrc)
         audio.src = audioSrc
         audio.load()
         // Autoplay when new src is loaded

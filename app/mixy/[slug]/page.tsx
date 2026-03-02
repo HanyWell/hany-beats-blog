@@ -49,16 +49,14 @@ export default function MixDetailPage({ params }: PageProps) {
 
   const handlePlayClick = () => {
     if (mix.audioFile) {
-      console.log('Setting current track:', mix._id, mix.title, mix.audioFile.asset.url)
       setCurrentTrack({
         id: mix._id,
         title: mix.title,
         audioSrc: mix.audioFile.asset.url,
         slug: mix.slug.current
       })
-    } else {
-      console.log('No audio file available')
     }
+  }
   }
 
   const handleTrackClick = (time: number) => {
