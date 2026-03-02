@@ -57,7 +57,6 @@ export default function MixDetailPage({ params }: PageProps) {
       })
     }
   }
-  }
 
   const handleTrackClick = (time: number) => {
     // First ensure this mix is playing
