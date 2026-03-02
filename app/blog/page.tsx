@@ -72,6 +72,10 @@ export default async function BlogPage() {
         </div>
       </div>
 
+      {/* DEBUG - zmaž po oprave */}
+      <p className="text-center text-xs text-gray-600 mb-4">
+        posts: {postsWithUrls.length} | cats: {postsWithUrls.map(p => p.categories?.length ?? 0).join(',')}
+      </p>
       <BlogClient posts={postsWithUrls} />
     </main>
   )
