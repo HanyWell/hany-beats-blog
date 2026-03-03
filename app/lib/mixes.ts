@@ -12,7 +12,7 @@ export async function getAllMixes(): Promise<Mix[]> {
         "asset": {
           "_ref": audioFile.asset._ref,
           "_type": audioFile.asset._type,
-          "url": audioFile.asset.url
+          "url": audioFile.asset->url
         }
       },
       publishedAt,
@@ -20,7 +20,7 @@ export async function getAllMixes(): Promise<Mix[]> {
       notes
     }
   `
-  
+
   return client.fetch(query)
 }
 
@@ -34,7 +34,7 @@ export async function getMixBySlug(slug: string): Promise<Mix | null> {
         "asset": {
           "_ref": audioFile.asset._ref,
           "_type": audioFile.asset._type,
-          "url": audioFile.asset.url
+          "url": audioFile.asset->url
         }
       },
       publishedAt,
@@ -42,6 +42,6 @@ export async function getMixBySlug(slug: string): Promise<Mix | null> {
       notes
     }
   `
-  
+
   return client.fetch(query, { slug })
 }

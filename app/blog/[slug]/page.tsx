@@ -106,7 +106,7 @@ export default async function PostDetailPage({
         </h1>
 
         {/* Info autor + dátum */}
-        <div className="flex items-center gap-4 mb-12 pb-8 border-b border-gray-800">
+        <div className="flex items-center gap-4 mb-12 pb-8 border-b border-gray-600">
           {post.author?.image && (
             <div className="relative w-12 h-12 rounded-full overflow-hidden">
               <Image

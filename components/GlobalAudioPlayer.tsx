@@ -4,7 +4,7 @@ import { useAudio } from '@/contexts/AudioContext'
 import { X, Maximize2, ExternalLink, Play, Pause, Volume2, VolumeX } from 'lucide-react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useAudioPlayer } from '@/hooks/useAudioPlayer'
 
 const DJAudioPlayer = dynamic(() => import('@/components/ui/DJAudioPlayer'), {
@@ -15,7 +15,9 @@ export default function GlobalAudioPlayer() {
   const { currentTrack, clearTrack, updateTime, registerControls } = useAudio()
   const [isExpanded, setIsExpanded] = useState(false)
   const [showVolumeSlider, setShowVolumeSlider] = useState(false)
-  
+  // True once we've observed duration===0 for the current src load cycle
+  const hasSeenZeroDurationRef = useRef(false)
+
   const { isPlaying, currentTime, duration, volume, isMuted, togglePlay, seek, setVolume, toggleMute } = useAudioPlayer(
     currentTrack?.audioSrc || ''
   )
@@ -29,6 +31,18 @@ export default function GlobalAudioPlayer() {
   useEffect(() => {
     updateTime(currentTime, duration)
   }, [currentTime, duration, updateTime])
+
+  // Apply seekOnLoad only after duration has cycled through 0 (confirming new audio loaded)
+  useEffect(() => {
+    if (duration === 0) {
+      hasSeenZeroDurationRef.current = true
+      return
+    }
+    if (hasSeenZeroDurationRef.current && currentTrack?.seekOnLoad !== undefined) {
+      seek(currentTrack.seekOnLoad)
+      hasSeenZeroDurationRef.current = false
+    }
+  }, [duration, currentTrack, seek])
 
   if (!currentTrack) return null
 

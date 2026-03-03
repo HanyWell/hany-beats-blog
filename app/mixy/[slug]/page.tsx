@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react'
 import { getMixBySlug } from '../../lib/mixes'
 import { Mix } from '@/types/sanity'
-import { notFound } from 'next/navigation'
 import TracklistSection from '../../components/TracklistSection'
 import Link from 'next/link'
 import { ArrowLeft, Play } from 'lucide-react'
@@ -14,10 +13,11 @@ interface PageProps {
 
 export default function MixDetailPage({ params }: PageProps) {
   const [mix, setMix] = useState<Mix | null>(null)
+  const [notFoundError, setNotFoundError] = useState(false)
   const { setCurrentTrack, currentTrack, getCurrentTime, seek } = useAudio()
   const [currentTime, setCurrentTime] = useState(0)
 
-  // Poll for current time when this mix is playing
+  // Poll current time for tracklist highlighting
   useEffect(() => {
     if (currentTrack?.id === mix?._id) {
       const interval = setInterval(() => {
@@ -32,12 +32,26 @@ export default function MixDetailPage({ params }: PageProps) {
       const { slug } = await params
       const mixData = await getMixBySlug(slug)
       if (!mixData) {
-        notFound()
+        setNotFoundError(true)
+        return
       }
       setMix(mixData)
     }
     loadMix()
   }, [params])
+
+  if (notFoundError) {
+    return (
+      <main className='min-h-screen bg-black text-white px-8 py-16'>
+        <h1 className='text-4xl font-bold text-white mb-4'>404</h1>
+        <p className='text-gray-400 mb-8'>Mix sa nenašiel</p>
+        <Link href='/mixy' className='inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors'>
+          <ArrowLeft className='w-4 h-4' />
+          Späť na mixy
+        </Link>
+      </main>
+    )
+  }
 
   if (!mix) {
     return (
@@ -47,23 +61,21 @@ export default function MixDetailPage({ params }: PageProps) {
     )
   }
 
+  const buildTrack = (seekOnLoad?: number) => ({
+    id: mix._id,
+    title: mix.title,
+    audioSrc: mix.audioFile.asset.url,
+    slug: mix.slug.current,
+    ...(seekOnLoad !== undefined && { seekOnLoad })
+  })
+
   const handlePlayClick = () => {
-    if (mix.audioFile) {
-      setCurrentTrack({
-        id: mix._id,
-        title: mix.title,
-        audioSrc: mix.audioFile.asset.url,
-        slug: mix.slug.current
-      })
-    }
+    if (mix.audioFile) setCurrentTrack(buildTrack())
   }
 
   const handleTrackClick = (time: number) => {
-    // First ensure this mix is playing
     if (currentTrack?.id !== mix._id) {
-      handlePlayClick()
-      // Wait a bit for audio to load, then seek
-      setTimeout(() => seek(time), 500)
+      if (mix.audioFile) setCurrentTrack(buildTrack(time))
     } else {
       seek(time)
     }

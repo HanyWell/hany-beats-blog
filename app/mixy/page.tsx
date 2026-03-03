@@ -9,12 +9,14 @@ import { useAudio } from '@/contexts/AudioContext'
 
 export default function MixyPage() {
   const [mixes, setMixes] = useState<Mix[]>([])
+  const [isLoading, setIsLoading] = useState(true)
   const { setCurrentTrack, currentTrack } = useAudio()
 
   useEffect(() => {
     async function loadMixes() {
       const data = await getAllMixes()
       setMixes(data)
+      setIsLoading(false)
     }
     loadMixes()
   }, [])
@@ -34,9 +36,13 @@ export default function MixyPage() {
     <main className="min-h-screen bg-black text-white px-8 py-16">
       <h1 className="text-4xl font-bold mb-8">Moje Mixy</h1>
       
-      {mixes.length === 0 ? (
+      {isLoading ? (
         <div className="text-center py-16">
           <p className="text-gray-400 text-lg">Načítavam mixy...</p>
+        </div>
+      ) : mixes.length === 0 ? (
+        <div className="text-center py-16">
+          <p className="text-gray-400 text-lg">Zatiaľ žiadne mixy.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

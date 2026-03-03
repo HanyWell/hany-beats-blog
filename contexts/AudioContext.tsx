@@ -7,6 +7,7 @@ interface Track {
   audioSrc: string
   artist?: string
   slug?: string
+  seekOnLoad?: number
 }
 
 interface AudioContextType {
@@ -32,6 +33,8 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   const audioControlsRef = useRef<{ seek: (time: number) => void; togglePlay: () => void } | null>(null)
 
   const handleSetTrack = (track: Track) => {
+    currentTimeRef.current = 0
+    durationRef.current = 0
     setCurrentTrack(track)
     setIsPlaying(true)
   }
@@ -42,6 +45,9 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     currentTimeRef.current = 0
     durationRef.current = 0
   }
+
+  const getCurrentTime = useCallback(() => currentTimeRef.current, [])
+  const getDuration = useCallback(() => durationRef.current, [])
 
   const updateTime = useCallback((time: number, dur: number) => {
     currentTimeRef.current = time
@@ -65,8 +71,8 @@ export function AudioProvider({ children }: { children: ReactNode }) {
       value={{
         currentTrack,
         isPlaying,
-        getCurrentTime: () => currentTimeRef.current,
-        getDuration: () => durationRef.current,
+        getCurrentTime,
+        getDuration,
         setCurrentTrack: handleSetTrack,
         clearTrack,
         seek,

@@ -150,7 +150,7 @@ export default function PlaylistyPage() {
                   group relative overflow-hidden rounded-2xl border transition-all duration-500
                   ${isOpen 
                     ? 'bg-gray-900/90 border-red-500/50 shadow-2xl shadow-red-500/20' 
-                    : 'bg-gray-900/50 border-gray-800 hover:border-red-500/30 hover:bg-gray-900/70'
+                    : 'bg-gray-900/50 border-gray-600 hover:border-red-500/30 hover:bg-gray-900/70'
                   }
                   animate-fade-in-up
                 `}
@@ -233,7 +233,7 @@ export default function PlaylistyPage() {
             <h3 className="text-xl font-semibold text-red-400 mb-4">
               {subPlaylist.subtitle}
             </h3>
-            <div className="w-full aspect-video rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+            <div className="w-full aspect-video rounded-xl overflow-hidden border border-gray-600 shadow-2xl">
               <iframe
                 src={`https://www.youtube.com/embed/videoseries?list=${subPlaylist.id}&autoplay=0&controls=1`}
                 width="100%"
@@ -254,7 +254,7 @@ export default function PlaylistyPage() {
     ) : (
       // SINGLE YOUTUBE PLAYLIST
       <div>
-        <div className="w-full aspect-video rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+        <div className="w-full aspect-video rounded-xl overflow-hidden border border-gray-600 shadow-2xl">
           <iframe
             src={`https://www.youtube.com/embed/videoseries?list=${playlist.id}&autoplay=0&controls=1`}
             width="100%"

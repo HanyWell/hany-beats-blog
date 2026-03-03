@@ -32,7 +32,7 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-14 sm:h-16">
 
           {/* Logo - Touch-friendly */}
-          <Link href="/" className="flex items-center gap-2 sm:gap-3 group min-h-[44px]" onClick={closeMobileMenu}>
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 group min-h-[44px]" aria-label="Hany Beats – Domov" onClick={closeMobileMenu}>
             <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-red-500 to-red-700 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
               <Music className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
             </div>

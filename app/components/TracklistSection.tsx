@@ -76,7 +76,7 @@ export default function TracklistSection({ tracks, notes, onTrackClick, currentT
     <div className="space-y-6">
       {/* DJ Notes */}
       {notes && (
-        <section className="bg-gray-900/50 rounded-lg p-6 border border-gray-800">
+        <section className="bg-gray-900/50 rounded-lg p-6 border border-gray-600">
           <h3 className="text-lg font-semibold mb-3 text-red-500">DJ Poznámky</h3>
           <p className="text-gray-300 leading-relaxed whitespace-pre-wrap">{notes}</p>
         </section>
@@ -95,7 +95,7 @@ export default function TracklistSection({ tracks, notes, onTrackClick, currentT
                 className={`bg-gray-900/30 rounded-lg p-4 border transition-all ${
                   isActive 
                     ? 'border-red-500 bg-red-500/10 shadow-[0_0_20px_rgba(239,68,68,0.3)]' 
-                    : 'border-gray-800 hover:border-gray-700'
+                    : 'border-gray-600 hover:border-gray-500'
                 }`}
               >
                 <div className="flex items-center justify-between">

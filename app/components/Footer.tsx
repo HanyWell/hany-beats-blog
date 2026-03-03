@@ -104,7 +104,7 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-gray-800 mt-8 pt-6 sm:pt-8 text-center text-gray-500 text-xs sm:text-sm">
+        <div className="border-t border-gray-600 mt-8 pt-6 sm:pt-8 text-center text-gray-500 text-xs sm:text-sm">
           © {currentYear} Hany Beats. Všetky práva vyhradené. 🎶
         </div>
       </div>
