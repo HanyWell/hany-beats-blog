@@ -1,67 +1,59 @@
 'use client'
-import { useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { 
-  Play, 
-  Pause, 
-  Volume2, 
-  VolumeX, 
-  SkipBack, 
+import {
+  Play,
+  Pause,
+  Volume2,
+  VolumeX,
+  SkipBack,
   SkipForward,
   Download,
   Loader2
 } from 'lucide-react'
-import { useAudioPlayer } from '@/hooks/useAudioPlayer'
 import WaveformDisplay from './WaveformDisplay'
 import { ANIMATION_DURATIONS } from '@/lib/constants'
 
 interface DJAudioPlayerProps {
   audioSrc: string
   title: string
-  onTimeUpdate?: (currentTime: number) => void
   className?: string
+  isPlaying: boolean
+  currentTime: number
+  duration: number
+  volume: number
+  isMuted: boolean
+  isLoading: boolean
+  error: string | null
+  onTogglePlay: () => void
+  onSeek: (time: number) => void
+  onSkip: (seconds: number) => void
+  onSetVolume: (vol: number) => void
+  onToggleMute: () => void
 }
 
 export default function DJAudioPlayer({
   audioSrc,
   title,
-  onTimeUpdate,
-  className = ''
+  className = '',
+  isPlaying,
+  currentTime,
+  duration,
+  volume,
+  isMuted,
+  isLoading,
+  error,
+  onTogglePlay,
+  onSeek,
+  onSkip,
+  onSetVolume,
+  onToggleMute,
 }: DJAudioPlayerProps) {
-  const {
-    isPlaying,
-    currentTime,
-    duration,
-    volume,
-    isMuted,
-    isLoading,
-    error,
-    togglePlay,
-    seek,
-    skip,
-    setVolume,
-    toggleMute,
-    audioRef
-  } = useAudioPlayer(audioSrc)
-
-  // Notify parent of time updates
-  useEffect(() => {
-    if (onTimeUpdate) {
-      onTimeUpdate(currentTime)
-    }
-  }, [currentTime, onTimeUpdate])
-
   // Format time to MM:SS
   const formatTime = (seconds: number) => {
     if (!isFinite(seconds)) return '0:00'
     const mins = Math.floor(seconds / 60)
     const secs = Math.floor(seconds % 60)
     return `${mins}:${secs.toString().padStart(2, '0')}`
-  }
-
-  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newVolume = parseFloat(e.target.value)
-    setVolume(newVolume)
   }
 
   return (
@@ -71,9 +63,6 @@ export default function DJAudioPlayer({
       transition={{ duration: ANIMATION_DURATIONS.SMOOTH }}
       className={`bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 ${className}`}
     >
-      {/* Hidden audio element */}
-      <audio ref={audioRef} src={audioSrc} preload="metadata" />
-
       {/* Title and time */}
       <div className="mb-6">
         <h3 className="text-xl font-semibold text-white mb-2">{title}</h3>
@@ -87,7 +76,7 @@ export default function DJAudioPlayer({
       <WaveformDisplay
         currentTime={currentTime}
         duration={duration}
-        onSeek={seek}
+        onSeek={onSeek}
         className="mb-6"
       />
 
@@ -104,7 +93,7 @@ export default function DJAudioPlayer({
         <div className="flex items-center gap-2">
           {/* Skip back 10s */}
           <motion.button
-            onClick={() => skip(-10)}
+            onClick={() => onSkip(-10)}
             disabled={isLoading}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -116,7 +105,7 @@ export default function DJAudioPlayer({
 
           {/* Play/Pause */}
           <motion.button
-            onClick={togglePlay}
+            onClick={onTogglePlay}
             disabled={isLoading || !!error}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -157,7 +146,7 @@ export default function DJAudioPlayer({
 
           {/* Skip forward 10s */}
           <motion.button
-            onClick={() => skip(10)}
+            onClick={() => onSkip(10)}
             disabled={isLoading}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -173,7 +162,7 @@ export default function DJAudioPlayer({
           {/* Volume control - hidden on mobile */}
           <div className="hidden md:flex items-center gap-2">
             <motion.button 
-              onClick={toggleMute}
+              onClick={onToggleMute}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="text-gray-400 hover:text-white transition-colors"
@@ -190,7 +179,7 @@ export default function DJAudioPlayer({
               max="1"
               step="0.01"
               value={isMuted ? 0 : volume}
-              onChange={handleVolumeChange}
+              onChange={(e) => onSetVolume(parseFloat(e.target.value))}
               className="w-24 h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-red-500
                 [&::-webkit-slider-thumb]:appearance-none
                 [&::-webkit-slider-thumb]:w-4

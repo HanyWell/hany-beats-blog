@@ -114,6 +114,18 @@ export default function GlobalAudioPlayer() {
                   audioSrc={currentTrack.audioSrc}
                   title={currentTrack.title}
                   className="border-0 bg-transparent p-0"
+                  isPlaying={isPlaying}
+                  currentTime={currentTime}
+                  duration={duration}
+                  volume={volume}
+                  isMuted={isMuted}
+                  isLoading={false}
+                  error={null}
+                  onTogglePlay={togglePlay}
+                  onSeek={seek}
+                  onSkip={(s) => seek(currentTime + s)}
+                  onSetVolume={setVolume}
+                  onToggleMute={toggleMute}
                 />
               </motion.div>
             )}

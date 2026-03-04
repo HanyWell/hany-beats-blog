@@ -89,8 +89,19 @@ export interface AudioCardProps {
 export interface DJAudioPlayerProps {
   audioSrc: string
   title: string
-  onTimeUpdate?: (currentTime: number) => void
   className?: string
+  isPlaying: boolean
+  currentTime: number
+  duration: number
+  volume: number
+  isMuted: boolean
+  isLoading: boolean
+  error: string | null
+  onTogglePlay: () => void
+  onSeek: (time: number) => void
+  onSkip: (seconds: number) => void
+  onSetVolume: (vol: number) => void
+  onToggleMute: () => void
 }
 
 // Props pre Waveform Display
