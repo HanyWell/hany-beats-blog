@@ -9,6 +9,7 @@ import { AudioProvider } from '@/contexts/AudioContext'
 import GlobalAudioPlayer from '@/components/GlobalAudioPlayer'
 import MyStatsig from './my-statsig'
 import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -95,6 +96,7 @@ export default function RootLayout({
             </AudioProvider>
           </MyStatsig>
           <Analytics />
+          <SpeedInsights />
         </body>
       </html>
     </>
