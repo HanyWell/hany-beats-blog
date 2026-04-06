@@ -1,7 +1,17 @@
 import { createClient } from 'next-sanity'
 import imageUrlBuilder from '@sanity/image-url'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
+import type { Metadata } from 'next'
 import BlogClient from './BlogClient'
+
+export const metadata: Metadata = {
+  title: 'Blog | Hany Beats',
+  description: 'Najnovšie články o DJ mixoch, hudobnej produkcii a elektronickej hudbe. Mixes, Stories, Tech.',
+  openGraph: {
+    title: 'Blog | Hany Beats',
+    description: 'Najnovšie články o DJ mixoch, hudobnej produkcii a elektronickej hudbe.',
+  },
+}
 
 export const dynamic = 'force-dynamic'
 
@@ -72,10 +82,6 @@ export default async function BlogPage() {
         </div>
       </div>
 
-      {/* DEBUG - zmaž po oprave */}
-      <p className="text-center text-xs text-gray-600 mb-4">
-        posts: {postsWithUrls.length} | cats: {postsWithUrls.map(p => p.categories?.length ?? 0).join(',')}
-      </p>
       <BlogClient posts={postsWithUrls} />
     </main>
   )

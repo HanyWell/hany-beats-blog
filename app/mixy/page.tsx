@@ -10,13 +10,20 @@ import { useAudio } from '@/contexts/AudioContext'
 export default function MixyPage() {
   const [mixes, setMixes] = useState<Mix[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const { setCurrentTrack, currentTrack } = useAudio()
 
   useEffect(() => {
     async function loadMixes() {
-      const data = await getAllMixes()
-      setMixes(data)
-      setIsLoading(false)
+      try {
+        const data = await getAllMixes()
+        setMixes(data)
+      } catch (err) {
+        console.error('Chyba pri načítaní mixov:', err)
+        setError('Nepodarilo sa načítať mixy. Skúste to znova neskôr.')
+      } finally {
+        setIsLoading(false)
+      }
     }
     loadMixes()
   }, [])
@@ -38,7 +45,20 @@ export default function MixyPage() {
       
       {isLoading ? (
         <div className="text-center py-16">
+          <div className="inline-block w-8 h-8 border-2 border-red-500 border-t-transparent rounded-full animate-spin mb-4" role="status" aria-label="Načítavam">
+            <span className="sr-only">Načítavam mixy...</span>
+          </div>
           <p className="text-gray-400 text-lg">Načítavam mixy...</p>
+        </div>
+      ) : error ? (
+        <div className="text-center py-16" role="alert">
+          <p className="text-red-400 text-lg mb-4">{error}</p>
+          <button 
+            onClick={() => window.location.reload()}
+            className="bg-red-600 hover:bg-red-500 text-white px-6 py-2 rounded-lg transition-colors"
+          >
+            Skúsiť znova
+          </button>
         </div>
       ) : mixes.length === 0 ? (
         <div className="text-center py-16">
@@ -81,14 +101,16 @@ export default function MixyPage() {
                   onClick={() => handlePlayClick(mix)}
                   disabled={!mix.audioFile}
                   className="flex-1 bg-red-600 hover:bg-red-500 disabled:bg-gray-700 disabled:cursor-not-allowed text-white px-4 py-2 rounded-lg flex items-center justify-center gap-2 transition-colors"
+                  aria-label={`Prehrať mix ${mix.title}`}
                 >
-                  <Play className="w-4 h-4" />
+                  <Play className="w-4 h-4" aria-hidden="true" />
                   Prehrať
                 </button>
                 
                 <Link 
                   href={`/mixy/${mix.slug.current}`}
                   className="bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
+                  aria-label={`Zobraziť detail mixu ${mix.title}`}
                 >
                   Detail
                 </Link>

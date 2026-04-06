@@ -51,7 +51,7 @@ export default function Navigation() {
                   className={`
                     relative px-4 lg:px-6 py-3 flex items-center gap-2 font-medium transition-all duration-200 min-h-[44px]
                     ${isActive
-                      ? 'text-blue-400'
+                      ? 'text-red-400'
                       : 'text-gray-400 hover:text-white'
                     }
                   `}
@@ -61,7 +61,7 @@ export default function Navigation() {
                   <span className="text-sm lg:text-base">{item.label}</span>
                   {/* Bottom border indicator */}
                   {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500" />
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-red-500" />
                   )}
                 </Link>
               )
@@ -73,21 +73,21 @@ export default function Navigation() {
             {/* Notifications - Touch-friendly */}
             <button
               className="relative p-2 text-gray-400 hover:text-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
-              aria-label="Notifikácie"
+              aria-label="Notifikácie - máte nové upozornenia"
             >
-              <Bell className="w-5 h-5" />
-              <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full" />
+              <Bell className="w-5 h-5" aria-hidden="true" />
+              <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full" aria-hidden="true" />
             </button>
 
             {/* Avatar - Touch-friendly */}
             <Link
               href="/about"
               className="relative w-9 h-9 rounded-full overflow-hidden border-2 border-gray-700 hover:border-red-500 transition-colors"
-              aria-label="Profil"
+              aria-label="O mne - Hany Beats profil"
             >
               <Image
                 src="/img/ja.jpg"
-                alt="Profile"
+                alt="Hany Beats profilová fotka"
                 fill
                 className="object-cover"
               />
@@ -98,8 +98,9 @@ export default function Navigation() {
           <button
             onClick={toggleMobileMenu}
             className="md:hidden flex flex-col justify-center items-center min-w-[44px] min-h-[44px] space-y-1.5 group"
-            aria-label="Toggle mobile menu"
+            aria-label={isMobileMenuOpen ? 'Zavrieť menu' : 'Otvoriť menu'}
             aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
           >
             <span className={`block w-6 h-0.5 bg-gray-300 transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
             <span className={`block w-6 h-0.5 bg-gray-300 transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
@@ -109,9 +110,12 @@ export default function Navigation() {
       </div>
 
       {/* Mobile Menu - Touch-friendly items */}
-      <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-        isMobileMenuOpen ? 'max-h-[400px]' : 'max-h-0'
-      }`}>
+      <div 
+        id="mobile-menu"
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          isMobileMenuOpen ? 'max-h-[400px]' : 'max-h-0'
+        }`}
+      >
         <div className="bg-[#0a0e27] border-t border-white/5">
           <div className="px-4 sm:px-6 py-4 space-y-1">
             {navItems.map((item) => {
@@ -125,7 +129,7 @@ export default function Navigation() {
                   className={`
                     flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors duration-200 min-h-[48px] text-base
                     ${isActive
-                      ? 'bg-blue-500/10 text-blue-400'
+                      ? 'bg-red-500/10 text-red-400'
                       : 'text-gray-400 hover:bg-white/5 hover:text-white active:bg-white/10'
                     }
                   `}
