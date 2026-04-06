@@ -26,20 +26,24 @@ export default function Navigation() {
   ]
 
   return (
-    <nav className="sticky top-0 z-50 bg-[#0a0e27]/95 backdrop-blur-xl border-b border-white/5">
+    <nav className="sticky top-0 z-50 bg-black/80 backdrop-blur-xl border-b border-white/5">
       {/* Desktop & Mobile Navigation */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-14 sm:h-16">
+        <div className="flex items-center justify-between h-16 sm:h-18">
 
-          {/* Logo - Touch-friendly */}
-          <Link href="/" className="flex items-center gap-2 sm:gap-3 group min-h-[44px]" aria-label="Hany Beats – Domov" onClick={closeMobileMenu}>
-            <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-red-500 to-red-700 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+          {/* Logo - Enhanced with glow */}
+          <Link href="/" className="flex items-center gap-3 group min-h-[44px]" aria-label="Hany Beats – Domov" onClick={closeMobileMenu}>
+            <div className="relative w-10 h-10 sm:w-11 sm:h-11 bg-gradient-to-br from-red-500 to-red-700 rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-red-500/50">
               <Music className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+              <div className="absolute inset-0 rounded-xl bg-red-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
+            <span className="hidden sm:block text-lg font-bold text-white group-hover:text-red-400 transition-colors">
+              Hany Beats
+            </span>
           </Link>
 
-          {/* Desktop Navigation Tabs */}
-          <div className="hidden md:flex items-center gap-1">
+          {/* Desktop Navigation Tabs - Enhanced */}
+          <div className="hidden md:flex items-center gap-1 bg-white/5 rounded-full p-1">
             {navItems.map((item) => {
               const Icon = item.icon
               const isActive = pathname === item.href
@@ -49,48 +53,46 @@ export default function Navigation() {
                   key={item.href}
                   href={item.href}
                   className={`
-                    relative px-4 lg:px-6 py-3 flex items-center gap-2 font-medium transition-all duration-200 min-h-[44px]
+                    relative px-5 lg:px-6 py-2.5 flex items-center gap-2 font-medium transition-all duration-300 min-h-[44px] rounded-full
                     ${isActive
-                      ? 'text-red-400'
-                      : 'text-gray-400 hover:text-white'
+                      ? 'text-white bg-red-600 shadow-lg shadow-red-500/30'
+                      : 'text-gray-400 hover:text-white hover:bg-white/10'
                     }
                   `}
                   onClick={closeMobileMenu}
                 >
                   <Icon className="w-4 h-4" />
                   <span className="text-sm lg:text-base">{item.label}</span>
-                  {/* Bottom border indicator */}
-                  {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-red-500" />
-                  )}
                 </Link>
               )
             })}
           </div>
 
           {/* Right Side - Notifications + Avatar */}
-          <div className="hidden md:flex items-center gap-3 lg:gap-4">
-            {/* Notifications - Touch-friendly */}
+          <div className="hidden md:flex items-center gap-2 lg:gap-3">
+            {/* Notifications - Enhanced */}
             <button
-              className="relative p-2 text-gray-400 hover:text-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+              className="relative p-2.5 text-gray-400 hover:text-white transition-all duration-300 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-white/10"
               aria-label="Notifikácie - máte nové upozornenia"
             >
               <Bell className="w-5 h-5" aria-hidden="true" />
-              <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full" aria-hidden="true" />
+              <span className="absolute top-2 right-2 w-2.5 h-2.5 bg-red-500 rounded-full animate-pulse" aria-hidden="true" />
             </button>
 
-            {/* Avatar - Touch-friendly */}
+            {/* Avatar - Enhanced with glow */}
             <Link
               href="/about"
-              className="relative w-9 h-9 rounded-full overflow-hidden border-2 border-gray-700 hover:border-red-500 transition-colors"
+              className="relative group"
               aria-label="O mne - Hany Beats profil"
             >
-              <Image
-                src="/img/ja.jpg"
-                alt="Hany Beats profilová fotka"
-                fill
-                className="object-cover"
-              />
+              <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-gray-700 group-hover:border-red-500 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-red-500/30">
+                <Image
+                  src="/img/ja.jpg"
+                  alt="Hany Beats profilová fotka"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </Link>
           </div>
 
